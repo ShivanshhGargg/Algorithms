@@ -7,14 +7,14 @@ public class PowerXN {
         else return half * half * x;
     }
 
-    public static int powerIt(int x, int n) {
+    public static int powerRec2(int x, int n) {
         if (n == 0) return 1;
         if (n < 0) return powerRec(1 / x, -n);
-        return x * powerIt(x, n - 1);
+        return x * powerRec2(x, n - 1);
     }
 
     public static void main(String[] args) {
         System.out.println(powerRec(4, 5));
-        System.out.println(powerIt(4, 5));
+        System.out.println(powerRec2(4, 5));
     }
 }
