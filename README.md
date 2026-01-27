@@ -31,7 +31,7 @@ If the exponent is odd, it multiplies the result with **x** once more.
 
 This approach is efficient and works well for large values of **n**.
 
-The **powerIt(x, n)** method is a simple recursive approach.  
+The **powerRec2(x, n)** method is a simple recursive approach.  
 It multiplies **x** with the result of the function called with **n − 1**.  
 This process continues until the exponent becomes zero.
 
