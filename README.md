@@ -255,7 +255,11 @@ For each recursive call:
 
 A helper method is also included to measure the time taken to sort the array using system time, although the main method currently demonstrates sorting with a fixed array.
 
-The **main** method sorts a sample array and prints the sorted result.
+
+## Graphs
+
+### Selection Sort Time Complexity
+![Linear Search Graph](Lab 1/Images/graphSS.png)
 
 ### **Conclusion**
 The program successfully demonstrates how selection sort can be implemented using recursion.  
@@ -293,16 +297,16 @@ In each recursive call:
 
 The **time(int[] arr)** function measures the time taken to sort the array using `System.nanoTime()` and returns the execution time in milliseconds.
 
-The **main** method:
-- Generates a random array of size **n**.
-- Runs the sorting function multiple times to calculate the average execution time.
-- Prints the average time taken for sorting.
+## Graphs
+
+### Bubble Sort Time Complexity
+![Linear Search Graph](Lab 1/Images/graphBB.png)
 
 ### **Conclusion**
 The program successfully demonstrates bubble sort using recursion.  
 It also shows how execution time can be measured and averaged to analyze the performance of the algorithm.
 
-x## Practical-9: Linear Search Using Recursion
+## Practical-9: Linear Search Using Recursion
 
 ### **Aim**
 To search for a target element in an array using linear search implemented with recursion and to measure the time taken for execution.
@@ -331,10 +335,10 @@ Otherwise, the function calls itself for the next index.
 
 The **time(int[] arr, int target)** function measures the time taken to perform the search using `System.nanoTime()` and returns the execution time in milliseconds.
 
-The **main** method:
-- Creates an array of random integers.
-- Runs the linear search multiple times to calculate the average execution time.
-- Prints the average time taken for the given input size.
+## Graphs
+
+### Linear Search Time Complexity
+![Linear Search Graph](Lab 1/Images/graphLS.png)
 
 ### **Conclusion**
 The program successfully demonstrates linear search using recursion.  

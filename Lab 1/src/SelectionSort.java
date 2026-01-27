@@ -33,20 +33,17 @@ public class SelectionSort {
     }
 
     public static void main(String[] args) {
-//        Random rd = new Random();
-//        double avg = 0;
-//        int n = 10;
-//        int[] arr = new int[n];
-//
-//        for (int i = 0; i < n; i++) arr[i] = rd.nextInt();
-//
-//        for (int i = 0; i < 1000; i++) {
-//            avg += time(arr);
-//        }
-//
-//        System.out.println("Time taken = " + avg / 1000 + " ms for n = " + n);
-        int[] arr = {5,4,3,2,1};
-        ss(arr,0);
-        System.out.println(Arrays.toString(arr));
+        Random rd = new Random();
+        double avg = 0;
+        int n = 2200;
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) arr[i] = rd.nextInt();
+
+        for (int i = 0; i < 1000; i++) {
+            avg += time(arr);
+        }
+
+        System.out.println("Time taken = " + avg / 1000 + " ms for n = " + n);
     }
 }
