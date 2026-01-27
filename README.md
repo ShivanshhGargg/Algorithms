@@ -259,7 +259,7 @@ A helper method is also included to measure the time taken to sort the array usi
 ## Graphs
 
 ### Selection Sort Time Complexity
-![Linear Search Graph](Lab 1/Images/graphSS.png)
+![Linear Search Graph](Lab%201/Images/graphSS.png)
 
 ### **Conclusion**
 The program successfully demonstrates how selection sort can be implemented using recursion.  
@@ -300,7 +300,7 @@ The **time(int[] arr)** function measures the time taken to sort the array using
 ## Graphs
 
 ### Bubble Sort Time Complexity
-![Linear Search Graph](Lab 1/Images/graphBB.png)
+![Linear Search Graph](Lab%201/Images/graphBB.png)
 
 ### **Conclusion**
 The program successfully demonstrates bubble sort using recursion.  
@@ -338,7 +338,7 @@ The **time(int[] arr, int target)** function measures the time taken to perform 
 ## Graphs
 
 ### Linear Search Time Complexity
-![Linear Search Graph](Lab 1/Images/graphLS.png)
+![Linear Search Graph](Lab%201/Images/graphLS.png)
 
 ### **Conclusion**
 The program successfully demonstrates linear search using recursion.  
