@@ -20,14 +20,14 @@ public class LinearSearch {
     public static void main(String[] args) {
         Random rd = new Random();
         double avg = 0;
-        int n = 25000;
+        int n = 100000;
         int[] arr = new int[n];
 
         int target = rd.nextInt();
 
-        for (int i = 0; i < n; i++)arr[i] = rd.nextInt();
 
         for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < n; j++)arr[j] = rd.nextInt();
             avg += time(arr,target);
         }
 

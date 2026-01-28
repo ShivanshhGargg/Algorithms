@@ -333,7 +333,7 @@ If the index **i** reaches the end of the array, the function returns **-1**, in
 If the element at index **i** matches the target, the function returns the index.  
 Otherwise, the function calls itself for the next index.
 
-The **time(int[] arr, int target)** function measures the time taken to perform the search using `System.nanoTime()` and returns the execution time in milliseconds.
+The **time(int[] arr, int target)** function measures the time taken to perform the search using System.nanoTime() and returns the execution time in milliseconds.
 
 ## Graphs
 

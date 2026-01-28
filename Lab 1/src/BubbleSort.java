@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class BubbleSort {
@@ -25,9 +24,8 @@ public class BubbleSort {
         int n = 25000;
         int[] arr = new int[n];
 
-        for (int i = 0; i < n; i++) arr[i] = rd.nextInt();
-
         for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < n; j++) arr[j] = rd.nextInt();
             avg += time(arr);
         }
 
