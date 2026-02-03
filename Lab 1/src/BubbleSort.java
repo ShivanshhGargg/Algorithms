@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class BubbleSort {
@@ -20,16 +21,18 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         Random rd = new Random();
-        double avg = 0;
-        int n = 25000;
-        int[] arr = new int[n];
-
-        for (int i = 0; i < 1000; i++) {
+        int[] values = {10,100,1000,2000,5000,10000,12500,15000,17500,20000,22500};
+        for (int n: values) {
+            double avg = 0;
+            int[] arr = new int[n];
             for (int j = 0; j < n; j++) arr[j] = rd.nextInt();
-            avg += time(arr);
+            Arrays.sort(arr);
+            for (int i = 0; i < 1000; i++) {
+                avg += time(arr);
+            }
+//            System.out.println("Time taken = " + avg / 1000 + " ms for n = " + n);
+            System.out.print(avg/1000 + ",");
         }
-
-        System.out.println("Time taken = " + avg / 1000 + " ms for n = " + n);
     }
 
     private static void swapIndex(int[] arr, int i, int j) {
