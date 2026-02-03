@@ -37,3 +37,4 @@ public class InsertionSort {
         System.out.println("Time taken = " + avg / 1000 + " ms for n = " + n);
     }
 }
+
