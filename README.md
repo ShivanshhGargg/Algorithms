@@ -344,19 +344,18 @@ The **time(int[] arr, int target)** function measures the time taken to perform 
 The program successfully demonstrates linear search using recursion.  
 It also shows how search time increases linearly with the size of the input.
 
-# Binary Search Using Recursion 
+# Binary Search Using Recursion
 
-## Aim
+### Aim
 To search for a target element in a sorted array using **binary search implemented with recursion** and to measure the execution time of the algorithm.
 
-
-## Theory
+### Theory
 Binary Search is an efficient searching algorithm that works on **sorted arrays**.  
 Instead of checking each element sequentially, it repeatedly divides the search space into two halves and eliminates the half in which the target cannot exist.
 
 In this program, binary search is implemented using **recursion** rather than loops.
 
-## How the Code Works
+### How the Code Works
 
 - An array of size n is created and filled with random values.
 - The array is sorted since binary search requires sorted data.
@@ -365,7 +364,7 @@ In this program, binary search is implemented using **recursion** rather than lo
 - Execution time is measured using System.nanoTime() and converted into milliseconds.
 
 
-## Function Explanation
+### Function Explanation
 
 ### BS(int[] arr, int t, int s, int e)
 - Performs recursive binary search.
@@ -373,7 +372,7 @@ In this program, binary search is implemented using **recursion** rather than lo
 - Returns -1 if the element is not present.
 
 
-## Time Complexity
+### Time Complexity
 
 - **Best Case:** O(1)
   (Target element found at the middle position)
@@ -383,24 +382,24 @@ In this program, binary search is implemented using **recursion** rather than lo
 - **Worst Case:** O(log n)
   (Target element not found or found after maximum recursive calls)
 
-## Space Complexity
+### Space Complexity
 
 - Recursive calls use stack memory.
 - **Space Complexity:** O(log n)
 
-## Graph
+### Graph
 ![Binary Search Graph](Lab%202/Images/BinarySearch.png)
 
-## Conclusion
+### Conclusion
 This program demonstrates the efficiency of binary search using recursion.  
 The results show that even as the input size increases significantly, the execution time grows very slowly, confirming the logarithmic time complexity of binary search.
 
-# Insertion Sort 
+# Insertion Sort
 
-## Aim
+### **Aim**
 To sort an array using the **Insertion Sort algorithm** and to measure the time taken for execution.
 
-## Theory
+### Theory
 Insertion Sort is a simple comparison-based sorting algorithm.  
 It works the same way we sort playing cards in our hands.
 
@@ -410,7 +409,7 @@ The array is divided into two parts:
 
 Elements from the unsorted part are picked one by one and placed at the correct position in the sorted part.
 
-## How the Code Works
+### How the Code Works
 
 - An array of size `n` is created and filled with random integers.
 - The insertion sort algorithm is applied to sort the array.
@@ -418,13 +417,13 @@ Elements from the unsorted part are picked one by one and placed at the correct 
 - The average execution time is calculated.
 - Time is measured using System.nanoTime() and converted into milliseconds.
 
-## Function Explanation
+### Function Explanation
 
 ### IS(int[] arr)
 - Sorts the array using insertion sort.
 - Each element is inserted into its correct position in the sorted portion of the array.
 
-## Time Complexity
+### Time Complexity
 
 - **Best Case:** O(n)
   (When the array is already sorted)
@@ -434,17 +433,17 @@ Elements from the unsorted part are picked one by one and placed at the correct 
 - **Worst Case:** O(n²)  
   (When the array is sorted in reverse order)
 
-## Space Complexity
+### Space Complexity
 
 - Sorting is done in place.
 - No extra memory is used.
 
 **Space Complexity:** O(1)
 
-## Graph
+### Graph
 ![Insertion Sort Graph](Lab%202/Images/InsertionSort.png)
 
 
-## Conclusion
+### Conclusion
 Insertion Sort is easy to understand and implement, but it is inefficient for large datasets.  
 The execution time increases rapidly as the input size grows, which confirms its quadratic time complexity.
