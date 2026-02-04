@@ -344,7 +344,7 @@ The **time(int[] arr, int target)** function measures the time taken to perform 
 The program successfully demonstrates linear search using recursion.  
 It also shows how search time increases linearly with the size of the input.
 
-# Binary Search Using Recursion (Java)
+# Binary Search Using Recursion 
 
 ## Aim
 To search for a target element in a sorted array using **binary search implemented with recursion** and to measure the execution time of the algorithm.
@@ -395,7 +395,7 @@ In this program, binary search is implemented using **recursion** rather than lo
 This program demonstrates the efficiency of binary search using recursion.  
 The results show that even as the input size increases significantly, the execution time grows very slowly, confirming the logarithmic time complexity of binary search.
 
-# Insertion Sort (Java)
+# Insertion Sort 
 
 ## Aim
 To sort an array using the **Insertion Sort algorithm** and to measure the time taken for execution.
