@@ -6,24 +6,31 @@ public class DijkstraAlgo {
     private static final int INF = 1_000_000;
     public static void dijkstra(int s,int[][] g,int[] d,int n){
         boolean[] vis = new boolean[n];
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> d[a]-d[b]);
-        for (int i = 0; i < n; i++) {
-            d[i] = g[s][i];
-            pq.add(i);
-        }
-        vis[s] = true;
-        for (int i = 2; i < n; i++) {
+        Arrays.fill(d, INF);
+
+        d[s] = 0;
+
+        PriorityQueue<Integer> pq =
+                new PriorityQueue<>((a, b) -> d[a] - d[b]);
+
+        pq.add(s);
+
+        while (!pq.isEmpty()) {
             int u = pq.poll();
+
+            if (vis[u]) continue;
             vis[u] = true;
+
             for (int j = 0; j < n; j++) {
-                if (vis[j])continue;
-                if (d[j]>d[u]+g[u][j]){
-                    d[j]=d[u]+g[u][j];
+                if (!vis[j] && g[u][j] != INF) {
+                    if (d[j] > d[u] + g[u][j]) {
+                        d[j] = d[u] + g[u][j];
+                        pq.add(j);
+                    }
                 }
             }
         }
     }
-
 
     public static void main(String[] args) {
         int[][] g = {
