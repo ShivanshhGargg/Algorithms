@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class TowerOfHanoi {
     public static void TOH(int n, int src, int dest, int ex){
-        if (n <= 0) return;
         if (n == 1) {
             System.out.printf("Move disk from %d to %d\n", src, dest);
             return;

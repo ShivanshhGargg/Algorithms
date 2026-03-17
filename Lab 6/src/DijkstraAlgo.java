@@ -1,22 +1,31 @@
 import java.util.Arrays;
-import java.util.List;
 import java.util.PriorityQueue;
 
 public class DijkstraAlgo {
     private static final int INF = 1_000_000;
-    public static void dijkstra(int s,int[][] g,int[] d,int n){
+
+    static class Pair {
+        int node, dist;
+        Pair(int node, int dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+    }
+
+    public static void dijkstra(int s, int[][] g, int[] d, int n) {
         boolean[] vis = new boolean[n];
         Arrays.fill(d, INF);
 
         d[s] = 0;
 
-        PriorityQueue<Integer> pq =
-                new PriorityQueue<>((a, b) -> d[a] - d[b]);
+        PriorityQueue<Pair> pq =
+                new PriorityQueue<>((a, b) -> a.dist - b.dist);
 
-        pq.add(s);
+        pq.add(new Pair(s, 0));
 
         while (!pq.isEmpty()) {
-            int u = pq.poll();
+            Pair curr = pq.poll();
+            int u = curr.node;
 
             if (vis[u]) continue;
             vis[u] = true;
@@ -25,7 +34,7 @@ public class DijkstraAlgo {
                 if (!vis[j] && g[u][j] != INF) {
                     if (d[j] > d[u] + g[u][j]) {
                         d[j] = d[u] + g[u][j];
-                        pq.add(j);
+                        pq.add(new Pair(j, d[j]));
                     }
                 }
             }

@@ -1,12 +1,10 @@
 public class MaxMin {
     static int max = Integer.MIN_VALUE;
-    static int max1 = Integer.MIN_VALUE;
     static int min = Integer.MAX_VALUE;
-    static int min1 = Integer.MAX_VALUE;
 
     private static void max_min(int[] arr,int s,int e){
         if (s == e){
-            max1 = min1 = arr[s];
+            max = min = arr[s];
             return;
         }
         else if (e == s + 1) {
@@ -35,7 +33,7 @@ public class MaxMin {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7,8,9,0};
+        int[] arr = {1,2,3,-4,25,6,7,8,9,0};
         max_min(arr,0,arr.length-1);
         System.out.println("Minimum = "+min);
         System.out.println("Maximum = "+max);
