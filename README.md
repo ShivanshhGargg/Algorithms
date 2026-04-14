@@ -447,3 +447,239 @@ Elements from the unsorted part are picked one by one and placed at the correct 
 ### Conclusion
 Insertion Sort is easy to understand and implement, but it is inefficient for large datasets.  
 The execution time increases rapidly as the input size grows, which confirms its quadratic time complexity.
+
+
+## Lab 3: Divide and Conquer Sorting
+
+This lab implements two classic divide-and-conquer sorting algorithms: Merge Sort and Quick Sort. Both implementations include a timing harness to measure running time over increasing input sizes.
+
+### Merge Sort
+
+Aim
+- To implement Merge Sort using recursion and measure its running time.
+
+Theory
+- Merge Sort recursively divides the array in half, sorts each half, and merges the two sorted halves. It guarantees O(n log n) time in all cases.
+
+What the Code Does
+- The `ms` function recursively splits the array and calls `mergeS` to merge the sorted halves.
+- The `time` helper measures the execution time using System.nanoTime and returns milliseconds.
+
+Time Complexity
+- Best/Average/Worst: O(n log n)
+
+Space Complexity
+- O(n) extra space for the temporary merge array.
+
+Conclusion
+- Merge Sort is stable and predictable; the implementation provided also prints timing results for multiple input sizes.
+
+### Quick Sort
+
+Aim
+- To implement Quick Sort (recursive) and measure its running time.
+
+Theory
+- Quick Sort selects a pivot, partitions the array into elements less than and greater than the pivot, and sorts the partitions recursively. Average time is O(n log n) but worst-case is O(n^2).
+
+What the Code Does
+- The `qs` function is a recursive Quick Sort; `partition` picks a middle element as pivot and arranges elements around it.
+- The `time` helper measures runtime similarly to Merge Sort.
+
+Time Complexity
+- Average: O(n log n), Worst: O(n^2) depending on pivot choices and input order.
+
+Space Complexity
+- O(log n) on average due to recursion depth (O(n) in worst case).
+
+Conclusion
+- Quick Sort is typically faster in practice than other O(n log n) sorts, but care must be taken with pivot selection.
+
+## Lab 4: Recursion and Non-Recursive Variants
+
+This lab contains a few recursive and iterative algorithm implementations: Binary Search (recursive), Counting permutations (recursive), and an iterative Quick Sort implementation.
+
+### Binary Search (Recursive)
+
+Aim
+- To implement binary search using recursion and demonstrate finding an element in a sorted array.
+
+Theory
+- Binary search splits the search interval in half each step, giving O(log n) time.
+
+What the Code Does
+- The `bs` method recursively searches a sorted array for a target value. (Note: the provided code computes `m = (s+e)/3` which is unusual for binary search — standard implementations use the midpoint `(s+e)/2`.)
+
+Time Complexity
+- O(log n)
+
+Space Complexity
+- O(log n) stack space for recursion.
+
+### Permutation (Recursive)
+
+Aim
+- To generate all permutations of a string using recursion and backtracking.
+
+Theory
+- Fix one character at a time and recursively permute the rest, using swaps and backtracking.
+
+What the Code Does
+- The `perm` function generates permutations by swapping characters and counting the total permutations in `c`.
+- A `time` helper measures execution time for different input sizes.
+
+Time Complexity
+- O(n!) time to generate all permutations.
+
+Space Complexity
+- O(n) recursion depth.
+
+### Quick Sort (Iterative)
+
+Aim
+- To implement Quick Sort without recursion (using an explicit stack / deque) and measure runtime.
+
+Theory
+- The iterative Quick Sort uses a stack to simulate recursion, partitioning subarrays and pushing ranges to sort.
+
+What the Code Does
+- The `qsi` method uses a Deque of ranges (pairs) to iteratively partition and sort the array.
+
+Time & Space Complexity
+- Same complexity classes as recursive Quick Sort; auxiliary stack replaces recursion.
+
+Conclusion
+- Lab 4 demonstrates both classic recursive algorithms and how recursion can be converted to iterative approaches using explicit stacks.
+
+## Lab 5: Selection & Geometric / Order Statistics
+
+This lab contains a mixed set of problems: Convex Hull (geometry), Fractional Knapsack (greedy), Quickselect for k-th smallest, Divide-and-Conquer Min/Max, and Quick Sort.
+
+### Convex Hull (Monotone Chain)
+
+Aim
+- To compute the convex hull of a set of 2D points.
+
+Theory
+- The monotone chain algorithm (Andrew's algorithm) sorts points lexicographically and builds the lower and upper hulls in linear time after sorting.
+
+What the Code Does
+- The `convexHull` method sorts points by x then y, constructs lower and upper hulls using an orientation test, and returns the hull points.
+
+Time Complexity
+- O(n log n) dominated by sorting.
+
+Space Complexity
+- O(n) for storing the hull and temporary lists.
+
+### Fractional Knapsack (Greedy)
+
+Aim
+- To maximize value for a given weight capacity when fractions of items are allowed.
+
+Theory
+- Sort items by value/weight ratio in descending order and take as much as possible from each item greedily.
+
+What the Code Does
+- The `knapSack` function sorts items by ratio and accumulates total value, allowing fractional part of the last item.
+
+Time Complexity
+- O(n log n) due to sorting.
+
+Space Complexity
+- O(1) additional space (in-place sort uses small extra space depending on JVM sort implementation).
+
+### k-th Smallest (Quickselect)
+
+Aim
+- To find the k-th smallest element efficiently using a selection algorithm.
+
+Theory
+- Quickselect is a selection algorithm related to Quick Sort: partition the array and recurse into the side that contains the k-th element; average O(n) time.
+
+What the Code Does
+- The `qs` method implements Quickselect using the same partition routine as Quick Sort and returns the k-th smallest element (1-based k in the implementation).
+
+Time Complexity
+- Average: O(n), Worst: O(n^2) depending on pivot choices.
+
+Space Complexity
+- O(log n) average recursion depth.
+
+### Min & Max (Divide and Conquer)
+
+Aim
+- To find both minimum and maximum using fewer comparisons via divide and conquer.
+
+Theory
+- Recursively split the array and combine results; this reduces the number of comparisons versus scanning twice.
+
+What the Code Does
+- The `max_min` function divides the array, computes min/max for halves, and combines them.
+
+Time Complexity
+- O(n)
+
+Space Complexity
+- O(log n) recursion depth.
+
+Conclusion
+- Lab 5 covers greedy, geometric, and selection algorithms, showing a range of algorithmic paradigms and their trade-offs.
+
+## Lab 6: Shortest Paths and Minimum Spanning Trees
+
+This lab implements three classic graph algorithms: Dijkstra's shortest paths, Prim's MST algorithm, and Kruskal's MST algorithm.
+
+### Dijkstra's Algorithm
+
+Aim
+- To compute shortest path distances from a source vertex in a weighted graph with non-negative weights.
+
+Theory
+- Dijkstra's algorithm uses a priority queue (min-heap) to repeatedly pick the closest unvisited vertex and relax its outgoing edges.
+
+What the Code Does
+- The `dijkstra` function initializes distances to INF, uses a PriorityQueue of pairs (node, dist), and relaxes neighbors updating distances.
+
+Time Complexity
+- O((V + E) log V) with a binary heap; implementation here checks all possible neighbors (dense adjacency matrix) so performance depends on representation.
+
+Space Complexity
+- O(V)
+
+### Prim's Algorithm (MST)
+
+Aim
+- To compute a Minimum Spanning Tree (MST) of a connected weighted undirected graph.
+
+Theory
+- Prim's algorithm grows the MST one edge at a time by selecting the minimum weight edge connecting the tree to a new vertex.
+
+What the Code Does
+- The `prims` method uses an array `near` to track the nearest tree vertex for each vertex and builds the MST incrementally, printing edges and returning the total cost.
+
+Time Complexity
+- O(V^2) with the dense matrix approach used here.
+
+Space Complexity
+- O(V)
+
+### Kruskal's Algorithm (MST)
+
+Aim
+- To compute the MST using a union-find (disjoint set) data structure.
+
+Theory
+- Kruskal's algorithm sorts edges by weight and adds them if they connect two different components; union-find with path compression and union by size keeps operations near-constant amortized time.
+
+What the Code Does
+- The `kruskal` method sorts the edge list, uses `find`/`union` to avoid cycles, prints picked edges, and returns MST cost.
+
+Time Complexity
+- O(E log E) dominated by sorting edges; union-find operations are nearly O(1) amortized.
+
+Space Complexity
+- O(V + E)
+
+Conclusion
+- Lab 6 demonstrates fundamental graph algorithms for shortest paths and MSTs, each appropriate in different graph density and weight scenarios.

@@ -1,6 +1,6 @@
 public class BinarySearch {
     public static int bs(int[] arr,int target,int s,int e){
-        int m = s + (e-s)/3;
+        int m = (s+e)/3;
         if (arr[m] == target)return m;
         else if (arr[m]<target)return bs(arr,target,m+1,e);
         else return bs(arr, target, s, m-1);

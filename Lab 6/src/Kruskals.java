@@ -32,8 +32,8 @@ public class Kruskals {
         }
     }
 
-    public static int kruskal(int n, List<Edge> edges) {
-        Collections.sort(edges, (a, b) -> a.w - b.w);
+    private static int kruskal(int n, List<Edge> edges) {
+        edges.sort((a, b) -> a.w - b.w);
 
         parent = new int[n];
         Arrays.fill(parent, -1);

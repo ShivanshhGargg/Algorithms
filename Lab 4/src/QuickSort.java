@@ -1,6 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.Random;
 
 public class QuickSort {
     public static class Pair {
@@ -47,13 +48,30 @@ public class QuickSort {
         arr[h] = t;
     }
 
-    public static void main(String[] args) {
-        int[] arr = new int[100000];
-        for (int i = 0; i < arr.length; i++) arr[i] = i;
+    public static double time(int[] arr,Deque<Pair> s){
+        long t1 = System.nanoTime();
 
-
-        Deque<Pair> s = new ArrayDeque<>();
         qsi(arr,s);
-        System.out.println(Arrays.toString(arr));
+
+        long t2 = System.nanoTime();
+
+        return (t2-t1)/1_000_000.0;
+    }
+
+    public static void main(String[] args) {
+        Random rd = new Random();
+        int[] values = {10, 100, 1000, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000};
+        Deque<Pair> s = new ArrayDeque<>();
+        for (int n : values) {
+            double avg = 0;
+            int[] arr = new int[n];
+            Arrays.sort(arr);
+            for (int j = 0; j < n; j++) arr[j] = j;
+            for (int i = 0; i < 1000; i++) {
+                int[] copy = arr.clone();
+                avg += time(copy,s);
+            }
+            System.out.print(avg / 1000 + ",");
+        }
     }
 }

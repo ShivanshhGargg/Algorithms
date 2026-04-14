@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class KthSmallest {
     public static int partition(int[] arr, int s, int e) {
         int m = s + (e - s) / 2;
@@ -39,10 +41,28 @@ public class KthSmallest {
         arr[h] = t;
     }
 
+    public static double time(int[] arr,int k) throws Exception{
+        long t1 = System.nanoTime();
+
+        qs(arr,k,0,arr.length-1);
+
+        long t2 = System.nanoTime();
+
+        return (t2-t1)/1_000_000.0;
+    }
+
     public static void main(String[] args) throws Exception{
-        int[] arr = {6,1,3,4,5,2,7,8};
-        int k = 8;
-        int i = qs(arr,k,0,arr.length-1);
-        System.out.println(i);
+        Random rd = new Random();
+        int[] values = {10, 100, 1000, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000};
+        for (int n: values) {
+            double avg = 0;
+            int[] str = new int[n];
+            for (int j = 0; j < n; j++) str[j] = rd.nextInt();
+            for (int i = 0; i < 10; i++) {
+                int[] copy = str.clone();
+                avg += time(copy,rd.nextInt(n));
+            }
+            System.out.print(avg/1000+",");
+        }
     }
 }
