@@ -449,237 +449,304 @@ Insertion Sort is easy to understand and implement, but it is inefficient for la
 The execution time increases rapidly as the input size grows, which confirms its quadratic time complexity.
 
 
-## Lab 3: Divide and Conquer Sorting
+## Practical-11: Merge Sort Using Recursion
 
-This lab implements two classic divide-and-conquer sorting algorithms: Merge Sort and Quick Sort. Both implementations include a timing harness to measure running time over increasing input sizes.
+### **Aim**
+To sort an array using Merge Sort and check how much time it takes for different input sizes.
 
-### Merge Sort
+### **Theory**
+Merge Sort follows divide and conquer.  
+It keeps dividing the array into two halves, sorts both halves, and then merges them in sorted order.
 
-Aim
-- To implement Merge Sort using recursion and measure its running time.
+It is reliable because its time complexity stays the same in all cases.
 
-Theory
-- Merge Sort recursively divides the array in half, sorts each half, and merges the two sorted halves. It guarantees O(n log n) time in all cases.
+**Time Complexity**
+- Best case: **O(n log n)**
+- Average case: **O(n log n)**
+- Worst case: **O(n log n)**
 
-What the Code Does
-- The `ms` function recursively splits the array and calls `mergeS` to merge the sorted halves.
-- The `time` helper measures the execution time using System.nanoTime and returns milliseconds.
+**Space Complexity**
+- Extra temporary array is used while merging.
+- Space complexity is **O(n)**.
 
-Time Complexity
-- Best/Average/Worst: O(n log n)
+### **What the Code Does**
+The **ms(int[] arr, int s, int e)** function recursively splits the array until single elements remain.  
+Then **mergeS(...)** combines the sorted parts back into one sorted array.
 
-Space Complexity
-- O(n) extra space for the temporary merge array.
+The **time(int[] arr)** function measures sorting time using `System.nanoTime()` and returns time in milliseconds.
 
-Conclusion
-- Merge Sort is stable and predictable; the implementation provided also prints timing results for multiple input sizes.
+## Graphs
 
-### Quick Sort
+### Merge Sort Time Complexity
+![Merge Sort Graph](Lab%203/Images/MergeSort.png)
 
-Aim
-- To implement Quick Sort (recursive) and measure its running time.
+### **Conclusion**
+The program correctly sorts data using Merge Sort and gives stable performance even for larger inputs.
 
-Theory
-- Quick Sort selects a pivot, partitions the array into elements less than and greater than the pivot, and sorts the partitions recursively. Average time is O(n log n) but worst-case is O(n^2).
+## Practical-12: Quick Sort Using Recursion
 
-What the Code Does
-- The `qs` function is a recursive Quick Sort; `partition` picks a middle element as pivot and arranges elements around it.
-- The `time` helper measures runtime similarly to Merge Sort.
+### **Aim**
+To sort an array using recursive Quick Sort and observe its performance.
 
-Time Complexity
-- Average: O(n log n), Worst: O(n^2) depending on pivot choices and input order.
+### **Theory**
+Quick Sort picks a pivot element, places smaller values on one side and larger values on the other side, then recursively sorts both parts.
 
-Space Complexity
-- O(log n) on average due to recursion depth (O(n) in worst case).
+It is usually very fast in practice, but in bad pivot cases it can slow down.
 
-Conclusion
-- Quick Sort is typically faster in practice than other O(n log n) sorts, but care must be taken with pivot selection.
+**Time Complexity**
+- Best case: **O(n log n)**
+- Average case: **O(n log n)**
+- Worst case: **O(n^2)**
 
-## Lab 4: Recursion and Non-Recursive Variants
+**Space Complexity**
+- Recursive call stack uses space.
+- Average: **O(log n)**, Worst: **O(n)**
 
-This lab contains a few recursive and iterative algorithm implementations: Binary Search (recursive), Counting permutations (recursive), and an iterative Quick Sort implementation.
+### **What the Code Does**
+The **qs(int[] arr, int s, int e)** function recursively sorts the array.  
+The **partition(...)** function chooses a middle pivot and arranges elements around it.
 
-### Binary Search (Recursive)
+The **time(int[] arr)** function is used to measure execution time.
 
-Aim
-- To implement binary search using recursion and demonstrate finding an element in a sorted array.
+## Graphs
 
-Theory
-- Binary search splits the search interval in half each step, giving O(log n) time.
+### Quick Sort Time Complexity
+![Quick Sort Graph](Lab%203/Images/QuickSort.png)
 
-What the Code Does
-- The `bs` method recursively searches a sorted array for a target value. (Note: the provided code computes `m = (s+e)/3` which is unusual for binary search — standard implementations use the midpoint `(s+e)/2`.)
+### **Conclusion**
+The program shows how Quick Sort works recursively and why it is commonly used for fast sorting.
 
-Time Complexity
-- O(log n)
+## Practical-13: Binary Search Using Recursion (Lab 4)
 
-Space Complexity
-- O(log n) stack space for recursion.
+### **Aim**
+To find an element in a sorted array using recursive binary search.
 
-### Permutation (Recursive)
+### **Theory**
+Binary Search checks the middle element and cuts the search space into half each step.  
+That is why it is much faster than linear search for sorted arrays.
 
-Aim
-- To generate all permutations of a string using recursion and backtracking.
+**Time Complexity**
+- Best case: **O(1)**
+- Average case: **O(log n)**
+- Worst case: **O(log n)**
 
-Theory
-- Fix one character at a time and recursively permute the rest, using swaps and backtracking.
+**Space Complexity**
+- Recursive calls use stack space.
+- Space complexity is **O(log n)**.
 
-What the Code Does
-- The `perm` function generates permutations by swapping characters and counting the total permutations in `c`.
-- A `time` helper measures execution time for different input sizes.
+### **What the Code Does**
+The **bs(int[] arr, int t, int s, int e)** method recursively searches for the target in a sorted array and returns its index if found.
 
-Time Complexity
-- O(n!) time to generate all permutations.
+### **Conclusion**
+The program clearly demonstrates binary search recursion and shows why sorted data helps in faster searching.
 
-Space Complexity
-- O(n) recursion depth.
+## Practical-14: Permutation of String (Lab 4)
 
-### Quick Sort (Iterative)
+### **Aim**
+To generate all possible permutations of a string using recursion and backtracking.
 
-Aim
-- To implement Quick Sort without recursion (using an explicit stack / deque) and measure runtime.
+### **Theory**
+At each step, one character is fixed and the rest are permuted recursively.  
+After each call, characters are swapped back (backtracking) so the next arrangements can be explored.
 
-Theory
-- The iterative Quick Sort uses a stack to simulate recursion, partitioning subarrays and pushing ranges to sort.
+**Time Complexity**
+- For length `n`, total permutations are `n!`.
+- Time complexity is **O(n!)**.
 
-What the Code Does
-- The `qsi` method uses a Deque of ranges (pairs) to iteratively partition and sort the array.
+**Space Complexity**
+- Recursion depth is at most `n`.
+- Space complexity is **O(n)**.
 
-Time & Space Complexity
-- Same complexity classes as recursive Quick Sort; auxiliary stack replaces recursion.
+### **What the Code Does**
+The **perm(char[] str, int i)** function swaps characters and recursively prints all arrangements.  
+It also counts the total number of permutations.
 
-Conclusion
-- Lab 4 demonstrates both classic recursive algorithms and how recursion can be converted to iterative approaches using explicit stacks.
+## Graphs
 
-## Lab 5: Selection & Geometric / Order Statistics
+### Permutation Time Complexity
+![Permutation Graph](Lab%204/Images/Permutation.png)
 
-This lab contains a mixed set of problems: Convex Hull (geometry), Fractional Knapsack (greedy), Quickselect for k-th smallest, Divide-and-Conquer Min/Max, and Quick Sort.
+### **Conclusion**
+The program is a good example of recursion + backtracking and prints all possible orders of characters.
 
-### Convex Hull (Monotone Chain)
+## Practical-15: Iterative Quick Sort (Lab 4)
 
-Aim
-- To compute the convex hull of a set of 2D points.
+### **Aim**
+To sort an array using Quick Sort without recursion.
 
-Theory
-- The monotone chain algorithm (Andrew's algorithm) sorts points lexicographically and builds the lower and upper hulls in linear time after sorting.
+### **Theory**
+Instead of recursive calls, this version uses an explicit stack/deque to store subarray ranges.  
+Logic stays same as Quick Sort, only implementation style changes.
 
-What the Code Does
-- The `convexHull` method sorts points by x then y, constructs lower and upper hulls using an orientation test, and returns the hull points.
+**Time Complexity**
+- Best/Average: **O(n log n)**
+- Worst: **O(n^2)**
 
-Time Complexity
-- O(n log n) dominated by sorting.
+**Space Complexity**
+- Uses extra stack/deque for pending ranges.
+- Average: **O(log n)**
 
-Space Complexity
-- O(n) for storing the hull and temporary lists.
+### **What the Code Does**
+The **qsi(int[] arr, int s, int e)** method stores ranges in a deque, partitions them one by one, and sorts the full array iteratively.
 
-### Fractional Knapsack (Greedy)
+## Graphs
 
-Aim
-- To maximize value for a given weight capacity when fractions of items are allowed.
+### Quick Sort (Iterative) Time Complexity
+![Quick Sort Graph](Lab%204/Images/QuickSort.png)
 
-Theory
-- Sort items by value/weight ratio in descending order and take as much as possible from each item greedily.
+### **Conclusion**
+The program shows that recursion can be replaced with an explicit stack while keeping the same algorithm idea.
 
-What the Code Does
-- The `knapSack` function sorts items by ratio and accumulates total value, allowing fractional part of the last item.
+## Practical-16: Convex Hull (Monotone Chain)
 
-Time Complexity
-- O(n log n) due to sorting.
+### **Aim**
+To find the convex hull of given 2D points.
 
-Space Complexity
-- O(1) additional space (in-place sort uses small extra space depending on JVM sort implementation).
+### **Theory**
+Convex hull is the smallest boundary that covers all points.  
+Monotone chain method first sorts points, then builds lower and upper hull using orientation checks.
 
-### k-th Smallest (Quickselect)
+**Time Complexity**
+- Sorting dominates the runtime.
+- Time complexity is **O(n log n)**.
 
-Aim
-- To find the k-th smallest element efficiently using a selection algorithm.
+**Space Complexity**
+- Additional lists are used to store hull points.
+- Space complexity is **O(n)**.
 
-Theory
-- Quickselect is a selection algorithm related to Quick Sort: partition the array and recurse into the side that contains the k-th element; average O(n) time.
+### **What the Code Does**
+The **convexHull(...)** method sorts points by x and y, removes turns that break convexity, and returns final hull points.
 
-What the Code Does
-- The `qs` method implements Quickselect using the same partition routine as Quick Sort and returns the k-th smallest element (1-based k in the implementation).
+### **Conclusion**
+The program gives a clean implementation of convex hull and shows a nice use of geometry with sorting.
 
-Time Complexity
-- Average: O(n), Worst: O(n^2) depending on pivot choices.
+## Practical-17: Fractional Knapsack (Greedy)
 
-Space Complexity
-- O(log n) average recursion depth.
+### **Aim**
+To maximize total value in a knapsack when item fractions are allowed.
 
-### Min & Max (Divide and Conquer)
+### **Theory**
+Items are picked by highest value/weight ratio first.  
+If full item cannot fit, only required fraction is taken.
 
-Aim
-- To find both minimum and maximum using fewer comparisons via divide and conquer.
+This greedy choice gives optimal result for fractional knapsack.
 
-Theory
-- Recursively split the array and combine results; this reduces the number of comparisons versus scanning twice.
+**Time Complexity**
+- Sorting items takes **O(n log n)**.
 
-What the Code Does
-- The `max_min` function divides the array, computes min/max for halves, and combines them.
+**Space Complexity**
+- Extra space is small.
+- Space complexity is approximately **O(1)** (ignoring sort internals).
 
-Time Complexity
-- O(n)
+### **What the Code Does**
+The **knapSack(...)** function sorts by ratio and keeps adding value until capacity is full.
 
-Space Complexity
-- O(log n) recursion depth.
+### **Conclusion**
+The program clearly shows where greedy strategy works perfectly.
 
-Conclusion
-- Lab 5 covers greedy, geometric, and selection algorithms, showing a range of algorithmic paradigms and their trade-offs.
+## Practical-18: K-th Smallest Element (Quickselect)
 
-## Lab 6: Shortest Paths and Minimum Spanning Trees
+### **Aim**
+To find the k-th smallest element faster than full sorting.
 
-This lab implements three classic graph algorithms: Dijkstra's shortest paths, Prim's MST algorithm, and Kruskal's MST algorithm.
+### **Theory**
+Quickselect partitions array like Quick Sort, but only recurses on the side that contains the k-th position.
 
-### Dijkstra's Algorithm
+**Time Complexity**
+- Average case: **O(n)**
+- Worst case: **O(n^2)**
 
-Aim
-- To compute shortest path distances from a source vertex in a weighted graph with non-negative weights.
+**Space Complexity**
+- Average recursion depth: **O(log n)**
 
-Theory
-- Dijkstra's algorithm uses a priority queue (min-heap) to repeatedly pick the closest unvisited vertex and relax its outgoing edges.
+### **What the Code Does**
+The **qs(...)** method keeps partitioning until the pivot lands on the k-th index, then returns that value.
 
-What the Code Does
-- The `dijkstra` function initializes distances to INF, uses a PriorityQueue of pairs (node, dist), and relaxes neighbors updating distances.
+### **Conclusion**
+The program is efficient for selection problems and avoids unnecessary full sorting.
 
-Time Complexity
-- O((V + E) log V) with a binary heap; implementation here checks all possible neighbors (dense adjacency matrix) so performance depends on representation.
+## Practical-19: Max and Min Using Divide and Conquer
 
-Space Complexity
-- O(V)
+### **Aim**
+To find both maximum and minimum values of an array using divide and conquer.
 
-### Prim's Algorithm (MST)
+### **Theory**
+Array is split into halves recursively, and each half returns its min and max.  
+Then both results are combined.
 
-Aim
-- To compute a Minimum Spanning Tree (MST) of a connected weighted undirected graph.
+**Time Complexity**
+- Time complexity is **O(n)**.
 
-Theory
-- Prim's algorithm grows the MST one edge at a time by selecting the minimum weight edge connecting the tree to a new vertex.
+**Space Complexity**
+- Recursive depth gives **O(log n)** space.
 
-What the Code Does
-- The `prims` method uses an array `near` to track the nearest tree vertex for each vertex and builds the MST incrementally, printing edges and returning the total cost.
+### **What the Code Does**
+The **max_min(...)** function returns min and max by combining results from left and right halves.
 
-Time Complexity
-- O(V^2) with the dense matrix approach used here.
+### **Conclusion**
+The program solves both min and max together in a clean recursive way.
 
-Space Complexity
-- O(V)
+## Practical-20: Dijkstra's Shortest Path
 
-### Kruskal's Algorithm (MST)
+### **Aim**
+To find shortest distance from a source node to all other nodes in a weighted graph.
 
-Aim
-- To compute the MST using a union-find (disjoint set) data structure.
+### **Theory**
+Dijkstra's algorithm always expands the currently nearest unvisited node and relaxes its edges.  
+It works for graphs with non-negative edge weights.
 
-Theory
-- Kruskal's algorithm sorts edges by weight and adds them if they connect two different components; union-find with path compression and union by size keeps operations near-constant amortized time.
+**Time Complexity**
+- Using priority queue: **O((V + E) log V)**
 
-What the Code Does
-- The `kruskal` method sorts the edge list, uses `find`/`union` to avoid cycles, prints picked edges, and returns MST cost.
+**Space Complexity**
+- Distance and helper arrays use **O(V)** space.
 
-Time Complexity
-- O(E log E) dominated by sorting edges; union-find operations are nearly O(1) amortized.
+### **What the Code Does**
+The **dijkstra(...)** method initializes distances, uses a priority queue, and updates better distances when found.
 
-Space Complexity
-- O(V + E)
+### **Conclusion**
+The program demonstrates a standard shortest-path solution used in many real applications.
 
-Conclusion
-- Lab 6 demonstrates fundamental graph algorithms for shortest paths and MSTs, each appropriate in different graph density and weight scenarios.
+## Practical-21: Prim's Algorithm for MST
+
+### **Aim**
+To build a Minimum Spanning Tree (MST) with minimum total edge cost.
+
+### **Theory**
+Prim's algorithm starts from one node and keeps adding the minimum weight edge that connects a new node to the growing tree.
+
+**Time Complexity**
+- For matrix-style implementation: **O(V^2)**
+
+**Space Complexity**
+- Uses arrays of size `V`.
+- Space complexity is **O(V)**.
+
+### **What the Code Does**
+The **prims(...)** function tracks nearest vertices, picks minimum edges one by one, prints selected edges, and calculates total MST cost.
+
+### **Conclusion**
+The program explains MST building in a straightforward step-by-step way.
+
+## Practical-22: Kruskal's Algorithm for MST
+
+### **Aim**
+To find MST using edge sorting and disjoint-set (union-find).
+
+### **Theory**
+Kruskal sorts all edges by weight and keeps taking the next lightest edge that does not create a cycle.
+
+Union-find helps quickly check whether two vertices are already connected.
+
+**Time Complexity**
+- Sorting edges dominates: **O(E log E)**
+
+**Space Complexity**
+- Stores edges and parent structures.
+- Space complexity is **O(V + E)**.
+
+### **What the Code Does**
+The **kruskal(...)** method sorts edges, uses **find/union** to avoid cycles, prints picked edges, and returns MST cost.
+
+### **Conclusion**
+The program shows a clean and practical MST approach, especially useful when edges are already easy to list.
