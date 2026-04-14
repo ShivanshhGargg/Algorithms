@@ -344,7 +344,7 @@ The **time(int[] arr, int target)** function measures the time taken to perform 
 The program successfully demonstrates linear search using recursion.  
 It also shows how search time increases linearly with the size of the input.
 
-# Binary Search Using Recursion
+## Practical-10: Binary Search Using Recursion
 
 ### Aim
 To search for a target element in a sorted array using **binary search implemented with recursion** and to measure the execution time of the algorithm.
@@ -394,7 +394,7 @@ In this program, binary search is implemented using **recursion** rather than lo
 This program demonstrates the efficiency of binary search using recursion.  
 The results show that even as the input size increases significantly, the execution time grows very slowly, confirming the logarithmic time complexity of binary search.
 
-# Insertion Sort
+## Practical-11: Insertion Sort
 
 ### **Aim**
 To sort an array using the **Insertion Sort algorithm** and to measure the time taken for execution.
@@ -449,7 +449,7 @@ Insertion Sort is easy to understand and implement, but it is inefficient for la
 The execution time increases rapidly as the input size grows, which confirms its quadratic time complexity.
 
 
-## Practical-11: Merge Sort Using Recursion
+## Practical-12: Merge Sort Using Recursion
 
 ### **Aim**
 To sort an array using Merge Sort and check how much time it takes for different input sizes.
@@ -483,7 +483,7 @@ The **time(int[] arr)** function measures sorting time using `System.nanoTime()`
 ### **Conclusion**
 The program correctly sorts data using Merge Sort and gives stable performance even for larger inputs.
 
-## Practical-12: Quick Sort Using Recursion
+## Practical-13: Quick Sort Using Recursion
 
 ### **Aim**
 To sort an array using recursive Quick Sort and observe its performance.
@@ -516,7 +516,7 @@ The **time(int[] arr)** function is used to measure execution time.
 ### **Conclusion**
 The program shows how Quick Sort works recursively and why it is commonly used for fast sorting.
 
-## Practical-13: Binary Search Using Recursion (Lab 4)
+## Practical-14: Binary Search Using Recursion (Lab 4)
 
 ### **Aim**
 To find an element in a sorted array using recursive binary search.
@@ -540,7 +540,7 @@ The **bs(int[] arr, int t, int s, int e)** method recursively searches for the t
 ### **Conclusion**
 The program clearly demonstrates binary search recursion and shows why sorted data helps in faster searching.
 
-## Practical-14: Permutation of String (Lab 4)
+## Practical-15: Permutation of String (Lab 4)
 
 ### **Aim**
 To generate all possible permutations of a string using recursion and backtracking.
@@ -569,7 +569,7 @@ It also counts the total number of permutations.
 ### **Conclusion**
 The program is a good example of recursion + backtracking and prints all possible orders of characters.
 
-## Practical-15: Iterative Quick Sort (Lab 4)
+## Practical-16: Iterative Quick Sort (Lab 4)
 
 ### **Aim**
 To sort an array using Quick Sort without recursion.
@@ -597,7 +597,7 @@ The **qsi(int[] arr, int s, int e)** method stores ranges in a deque, partitions
 ### **Conclusion**
 The program shows that recursion can be replaced with an explicit stack while keeping the same algorithm idea.
 
-## Practical-16: Convex Hull (Monotone Chain)
+## Practical-17: Convex Hull (Monotone Chain)
 
 ### **Aim**
 To find the convex hull of given 2D points.
@@ -620,7 +620,7 @@ The **convexHull(...)** method sorts points by x and y, removes turns that break
 ### **Conclusion**
 The program gives a clean implementation of convex hull and shows a nice use of geometry with sorting.
 
-## Practical-17: Fractional Knapsack (Greedy)
+## Practical-18: Fractional Knapsack (Greedy)
 
 ### **Aim**
 To maximize total value in a knapsack when item fractions are allowed.
@@ -644,7 +644,7 @@ The **knapSack(...)** function sorts by ratio and keeps adding value until capac
 ### **Conclusion**
 The program clearly shows where greedy strategy works perfectly.
 
-## Practical-18: K-th Smallest Element (Quickselect)
+## Practical-19: K-th Smallest Element (Quickselect)
 
 ### **Aim**
 To find the k-th smallest element faster than full sorting.
@@ -665,7 +665,7 @@ The **qs(...)** method keeps partitioning until the pivot lands on the k-th inde
 ### **Conclusion**
 The program is efficient for selection problems and avoids unnecessary full sorting.
 
-## Practical-19: Max and Min Using Divide and Conquer
+## Practical-20: Max and Min Using Divide and Conquer
 
 ### **Aim**
 To find both maximum and minimum values of an array using divide and conquer.
@@ -686,7 +686,7 @@ The **max_min(...)** function returns min and max by combining results from left
 ### **Conclusion**
 The program solves both min and max together in a clean recursive way.
 
-## Practical-20: Dijkstra's Shortest Path
+## Practical-21: Dijkstra's Shortest Path
 
 ### **Aim**
 To find shortest distance from a source node to all other nodes in a weighted graph.
@@ -707,7 +707,7 @@ The **dijkstra(...)** method initializes distances, uses a priority queue, and u
 ### **Conclusion**
 The program demonstrates a standard shortest-path solution used in many real applications.
 
-## Practical-21: Prim's Algorithm for MST
+## Practical-22: Prim's Algorithm for MST
 
 ### **Aim**
 To build a Minimum Spanning Tree (MST) with minimum total edge cost.
@@ -728,7 +728,7 @@ The **prims(...)** function tracks nearest vertices, picks minimum edges one by 
 ### **Conclusion**
 The program explains MST building in a straightforward step-by-step way.
 
-## Practical-22: Kruskal's Algorithm for MST
+## Practical-23: Kruskal's Algorithm for MST
 
 ### **Aim**
 To find MST using edge sorting and disjoint-set (union-find).
