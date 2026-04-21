@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class DijkstraAlgo {
     private static final int INF = 1_000_000;
@@ -41,17 +40,49 @@ public class DijkstraAlgo {
         }
     }
 
+    public static double time(int[][] g) {
+        int n = g.length;
+        int[] d = new int[n];
+
+        long t1 = System.nanoTime();
+        dijkstra(0, g, d, n);
+        long t2 = System.nanoTime();
+
+        return (t2 - t1) / 1_000_000.0; // ms
+    }
+
+    public static int[][] generateGraph(int n) {
+        Random rd = new Random();
+        int[][] g = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) g[i][j] = 0;
+                else {
+                    if (rd.nextDouble() < 0.3)
+                        g[i][j] = rd.nextInt(50) + 1;
+                    else
+                        g[i][j] = INF;
+                }
+            }
+        }
+        return g;
+    }
+
     public static void main(String[] args) {
-        int[][] g = {
-                    {0,50,45,10,INF,INF},
-                    {INF,0,10,15,INF,INF},
-                    {INF,INF,0,INF,30,INF},
-                    {20,INF,INF,0,15,INF},
-                    {INF,20,35,INF,0,INF},
-                    {INF,INF,INF,INF,3,0}
-                    };
-        int[] d = new int[g.length];
-        dijkstra(0,g,d,g.length);
-        System.out.println(Arrays.toString(d));
+        int[] sizes = {10, 20, 50, 100, 150, 200, 250, 300};
+
+        for (int n : sizes) {
+            double avg = 0;
+
+            int[][] graph = generateGraph(n);
+
+            for (int i = 0; i < 10; i++) {
+                avg += time(graph);
+            }
+
+            System.out.print((avg / 10) + ", ");
+        }
+
     }
 }

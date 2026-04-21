@@ -597,14 +597,16 @@ The **qsi(int[] arr, int s, int e)** method stores ranges in a deque, partitions
 ### **Conclusion**
 The program shows that recursion can be replaced with an explicit stack while keeping the same algorithm idea.
 
-## Practical-17: Convex Hull (Monotone Chain)
+## Practical-17: Convex Hull
 
 ### **Aim**
 To find the convex hull of given 2D points.
 
 ### **Theory**
-Convex hull is the smallest boundary that covers all points.  
-Monotone chain method first sorts points, then builds lower and upper hull using orientation checks.
+Convex hull means the outer boundary formed by a set of points.  
+You can think of it like stretching a rubber band around all points.
+
+In this code, points are first sorted by angle with respect to a starting point, and then a stack is used to keep only the valid outer turns.
 
 **Time Complexity**
 - Sorting dominates the runtime.
@@ -615,7 +617,14 @@ Monotone chain method first sorts points, then builds lower and upper hull using
 - Space complexity is **O(n)**.
 
 ### **What the Code Does**
-The **convexHull(...)** method sorts points by x and y, removes turns that break convexity, and returns final hull points.
+The **convexHull(...)** method picks a base point, sorts the remaining points by orientation/angle, removes invalid turns using a stack, and returns hull points.
+
+The program also has **generatePoints(...)** to create random input and **time(...)** to measure how long hull computation takes.
+
+## Graphs
+
+### Convex Hull Time Complexity
+![Convex Hull Graph](Lab%205/Images/ConvexHull.png)
 
 ### **Conclusion**
 The program gives a clean implementation of convex hull and shows a nice use of geometry with sorting.
@@ -641,6 +650,13 @@ This greedy choice gives optimal result for fractional knapsack.
 ### **What the Code Does**
 The **knapSack(...)** function sorts by ratio and keeps adding value until capacity is full.
 
+It runs for multiple input sizes and prints average execution time.
+
+## Graphs
+
+### Fractional Knapsack Time Complexity
+![Knapsack Graph](Lab%205/Images/KnapSack.png)
+
 ### **Conclusion**
 The program clearly shows where greedy strategy works perfectly.
 
@@ -661,6 +677,11 @@ Quickselect partitions array like Quick Sort, but only recurses on the side that
 
 ### **What the Code Does**
 The **qs(...)** method keeps partitioning until the pivot lands on the k-th index, then returns that value.
+
+## Graphs
+
+### K-th Smallest Time Complexity
+![Kth Smallest Graph](Lab%205/Images/KthSmallest.png)
 
 ### **Conclusion**
 The program is efficient for selection problems and avoids unnecessary full sorting.
@@ -683,10 +704,43 @@ Then both results are combined.
 ### **What the Code Does**
 The **max_min(...)** function returns min and max by combining results from left and right halves.
 
+## Graphs
+
+### Max-Min Time Complexity
+![Max Min Graph](Lab%205/Images/MaxMin.png)
+
 ### **Conclusion**
 The program solves both min and max together in a clean recursive way.
 
-## Practical-21: Dijkstra's Shortest Path
+## Practical-21: Quick Sort on Float Array
+
+### **Aim**
+To sort floating-point numbers using recursive Quick Sort.
+
+### **Theory**
+Quick Sort selects a pivot and places all smaller values on one side and larger values on the other side.  
+Then the same process is repeated recursively on both parts.
+
+**Time Complexity**
+- Best/Average case: **O(n log n)**
+- Worst case: **O(n^2)**
+
+**Space Complexity**
+- Recursive stack depth is **O(log n)** on average.
+
+### **What the Code Does**
+The **partition(float[] arr, int s, int e)** method chooses a middle pivot and places it in its correct position.  
+The **qs(...)** method recursively sorts left and right partitions.
+
+## Graphs
+
+### Quick Sort Time Complexity
+![Quick Sort Graph](Lab%205/Images/QuickSort.png)
+
+### **Conclusion**
+This practical shows a clear recursive implementation of Quick Sort for float values.
+
+## Practical-22: Dijkstra's Shortest Path
 
 ### **Aim**
 To find shortest distance from a source node to all other nodes in a weighted graph.
@@ -704,10 +758,15 @@ It works for graphs with non-negative edge weights.
 ### **What the Code Does**
 The **dijkstra(...)** method initializes distances, uses a priority queue, and updates better distances when found.
 
+## Graphs
+
+### Dijkstra Time Complexity
+![Dijkstra Graph](Lab%206/Images/Dijsktra.png)
+
 ### **Conclusion**
 The program demonstrates a standard shortest-path solution used in many real applications.
 
-## Practical-22: Prim's Algorithm for MST
+## Practical-23: Prim's Algorithm for MST
 
 ### **Aim**
 To build a Minimum Spanning Tree (MST) with minimum total edge cost.
@@ -728,7 +787,7 @@ The **prims(...)** function tracks nearest vertices, picks minimum edges one by 
 ### **Conclusion**
 The program explains MST building in a straightforward step-by-step way.
 
-## Practical-23: Kruskal's Algorithm for MST
+## Practical-24: Kruskal's Algorithm for MST
 
 ### **Aim**
 To find MST using edge sorting and disjoint-set (union-find).
@@ -750,3 +809,121 @@ The **kruskal(...)** method sorts edges, uses **find/union** to avoid cycles, pr
 
 ### **Conclusion**
 The program shows a clean and practical MST approach, especially useful when edges are already easy to list.
+
+## Practical-25: Stage Identification in a Multistage Graph
+
+### **Aim**
+To group vertices of a directed graph into stages level by level.
+
+### **Theory**
+In a multistage graph, vertices are arranged in layers (stages).  
+Each edge generally goes from one stage to a later stage.
+
+This program starts from source vertex `0` and discovers the next set of reachable vertices stage by stage.
+
+**Time Complexity**
+- The adjacency matrix is scanned while building stages.
+- Time complexity is approximately **O(V^2)**.
+
+**Space Complexity**
+- Stages and visited arrays store vertex information.
+- Space complexity is **O(V)**.
+
+### **What the Code Does**
+The program takes `n` (vertices) and `m` (edges) as input, then reads edges in `from to weight` format.
+
+The **findStage(...)** method:
+- starts from vertex `0`,
+- builds one stage at a time using reachable unvisited vertices,
+- stores each stage in a set list,
+- and finally prints total stages and vertices in each stage.
+
+### **Conclusion**
+This practical clearly shows how a graph can be split into stages, which is useful before applying multistage shortest path methods.
+
+## Practical-26: Multistage Graph Shortest Path (Forward Method)
+
+### **Aim**
+To find minimum-cost path in a multistage graph using forward dynamic programming.
+
+### **Theory**
+Forward method moves from source stage to destination stage and keeps updating the best known cost to each next vertex.
+
+At every transition, if a better path is found, cost and parent information are updated.
+
+**Time Complexity**
+- Depends on number of valid edges checked between consecutive stages.
+- With matrix checks, it is around **O(V^2)** for this implementation.
+
+**Space Complexity**
+- Uses arrays for cost, decision, and path.
+- Space complexity is **O(V)**.
+
+### **What the Code Does**
+The **fGraph(...)** function first calls **findStage(...)**, then processes stages from right to left to compute minimum cost from each node to destination.
+
+It stores next-node decisions in `d[]`, reconstructs the final path in `p[]`, and prints:
+- minimum total cost,
+- the stage-wise path from source to destination.
+
+### **Conclusion**
+The forward method gives a clean staged approach to shortest path and works well when graph levels are known.
+
+## Practical-27: Multistage Graph Shortest Path (Backward Method)
+
+### **Aim**
+To find minimum-cost path in a multistage graph using backward (left-to-right) relaxation.
+
+### **Theory**
+This method starts with source cost `0` and relaxes edges stage by stage toward the destination.
+
+Each vertex keeps track of:
+- best cost from source,
+- parent vertex used to reach it.
+
+**Time Complexity**
+- With stage transitions and matrix checks, this implementation runs around **O(V^2)**.
+
+**Space Complexity**
+- Cost, parent, and path arrays use **O(V)** space.
+
+### **What the Code Does**
+The **bGraph(...)** method:
+- finds graph stages,
+- updates minimum cost to next stage vertices,
+- stores parents,
+- rebuilds destination-to-source path,
+- and prints minimum cost and final path.
+
+### **Conclusion**
+This practical demonstrates another valid DP style for multistage shortest path and helps compare forward vs backward approaches.
+
+## Practical-28: Matrix Chain Multiplication (Dynamic Programming)
+
+### **Aim**
+To find the minimum number of scalar multiplications needed to multiply a chain of matrices.
+
+### **Theory**
+Matrix multiplication is associative, so parenthesization order can be changed.  
+Different orders give different multiplication costs.
+
+Dynamic programming is used to try all split points and store the best result for each sub-chain.
+
+**Time Complexity**
+- Triple nested loops are used for chain length, start index, and split point.
+- Time complexity is **O(n^3)**.
+
+**Space Complexity**
+- DP tables `m` and `s` are used.
+- Space complexity is **O(n^2)**.
+
+### **What the Code Does**
+The **matrixChainOrder(int[] p)** method fills:
+- `m[i][j]` = minimum multiplication cost,
+- `s[i][j]` = split index where optimal break happens.
+
+The **printOptimalParens(i, j)** method recursively prints the best parenthesization.
+
+### **Conclusion**
+This practical shows a classic dynamic programming problem where saving subproblem results gives the optimal overall solution.
+
