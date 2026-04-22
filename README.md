@@ -927,3 +927,42 @@ The **printOptimalParens(i, j)** method recursively prints the best parenthesiza
 ### **Conclusion**
 This practical shows a classic dynamic programming problem where saving subproblem results gives the optimal overall solution.
 
+
+## Practical-29: Floyd-Warshall (All-Pairs Shortest Path)
+
+### **Aim**
+To find the shortest distances between every pair of vertices in a weighted graph.
+
+### **Theory**
+Floyd-Warshall is a dynamic programming algorithm for all-pairs shortest paths.  
+It checks whether going through an intermediate vertex `k` gives a shorter path between `i` and `j`.
+
+The algorithm updates the distance matrix step by step for all possible intermediate vertices.
+
+**Time Complexity**
+- Three nested loops run over all vertices.
+- Time complexity is **O(V^3)**.
+
+**Space Complexity**
+- A distance matrix of size `V x V` is maintained.
+- Space complexity is **O(V^2)**.
+
+### **What the Code Does**
+The **floydWarshall(int[][] cost, int[][] A, int n)** method first copies the input cost matrix into `A`, then updates `A[i][j]` whenever a shorter route is found through vertex `k`.
+
+The **generateGraph(int n)** method creates a random weighted graph using:
+- `0` on diagonal,
+- random positive weights for some edges,
+- `INF` for missing edges.
+
+The **time(...)** method measures execution time using `System.nanoTime()`, and the **main** method runs it for multiple graph sizes and prints average time.
+
+## Graphs
+
+### Floyd-Warshall Time Complexity
+![Floyd-Warshall Graph](Lab%209/Images/FloydWarshall.png)
+
+### **Conclusion**
+This practical demonstrates a standard all-pairs shortest path algorithm and clearly shows how dynamic programming improves path costs through intermediate vertices.
+
+
