@@ -14,7 +14,7 @@ public class MatrixChainMultiplication {
             m[i][i] = 0;
         }
 
-        for (int l = 2; l <= n; l++) { // chain length
+        for (int l = 2; l <= n; l++) {
             for (int i = 1; i <= n - l + 1; i++) {
                 int j = i + l - 1;
                 m[i][j] = Integer.MAX_VALUE;
