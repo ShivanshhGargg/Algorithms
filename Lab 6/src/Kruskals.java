@@ -50,8 +50,9 @@ public class Kruskals {
         }
 
         if (count != n - 1) {
+            System.out.println("Graph is not connected, MST not possible");
+            return;
         }
-
     }
 
     public static double time(List<Edge> edges, int n) {

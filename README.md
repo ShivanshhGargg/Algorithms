@@ -1,32 +1,48 @@
-
-# Algorithms — Practical Labs (Regenerated)
-
-This README has been regenerated to present a consistent structure for each practical: Aim, Time Complexity (TC), Space Complexity (SC), Algorithm, Code (only the dedicated function), Use Cases, and Graphs (if present).
-
-Note: code blocks include only the primary function used to demonstrate the algorithm in each lab.
-
----
+# Algorithms — Practical Labs
 
 ## Practical-1: Power of a Number
 
-Aim
-- Implement methods to compute x^n using recursion (optimized and simple recursive versions).
+### Aim
+Implement methods to compute \( x^n \) using recursion (optimized and simple recursive versions).
 
-TC
-- Optimized recursive method: O(log n)
-- Simple recursive method: O(n)
+---
 
-SC
-- Optimized: O(log n) (call stack)
-- Simple: O(n)
+### Algorithm (Optimized - Divide and Conquer)
 
-Algorithm
-- Optimized (divide-and-conquer): compute x^(n/2) and square; multiply by x if n is odd. Handle negative exponents by inversion.
-- Simple: multiply x repeatedly n times using recursion.
+**Algorithm: POWER(x, n)**
 
-Code  
+1. If \( n = 0 \), return 1
+2. If \( n < 0 \), return \( 1 / POWER(x, -n) \)
+3. Compute \( y = POWER(x, n/2) \)
+4. If \( n \) is even, return \( y \times y \)
+5. Else return \( x \times y \times y \)
+
+---
+
+### Algorithm (Simple Recursive)
+
+**Algorithm: SIMPLE-POWER(x, n)**
+
+1. If \( n = 0 \), return 1
+2. Else return \( x \times SIMPLE\text{-}POWER(x, n-1) \)
+
+---
+
+### Time Complexity (TC)
+- Optimized: \( O(\log n) \)
+- Simple: \( O(n) \)
+
+---
+
+### Space Complexity (SC)
+- Optimized: \( O(\log n) \)
+- Simple: \( O(n) \)
+
+---
+
+### Code    
+
 ```java
-// optimized power (divide and conquer)
 public static double powerRec(double x, int n) {
     if (n == 0) return 1.0;
     if (n < 0) return 1.0 / powerRec(x, -n);
@@ -36,27 +52,48 @@ public static double powerRec(double x, int n) {
 }
 ```
 
-Use cases
-- Fast exponentiation in numerical code, modular exponentiation (with modifications), graphics, simulations.
-  
+---
 
+### Use Cases
+- Fast exponentiation
+- Graphics computations
+- Simulations
+- Modular exponentiation (with modifications)
 ---
 
 ## Practical-2: Tower of Hanoi
 
-Aim
-- Print sequence of moves to transfer n disks from source to destination using an auxiliary rod.
+### Aim
+Print the sequence of moves to transfer `n` disks from source to destination using an auxiliary rod.
 
-TC
-- O(2^n)
+---
 
-SC
-- O(n) (recursion depth)
+### Algorithm (Recursive)
 
-Algorithm
-- Recursive decomposition: move n-1 disks to aux, move largest disk to dest, move n-1 from aux to dest.
+**Algorithm: TOH(n, src, dest, aux)**
 
-Code  
+1. If \( n \leq 0 \), return
+2. If \( n = 1 \),
+  - Print "Move disk 1 from src to dest"
+  - Return
+3. Call \( TOH(n-1, src, aux, dest) \)
+4. Print "Move disk n from src to dest"
+5. Call \( TOH(n-1, aux, dest, src) \)
+
+---
+
+### Time Complexity (TC)
+- \( O(2^n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \) (recursion stack)
+
+---
+
+### Code    
+
 ```java
 public static void TOH(int n, char src, char dest, char aux) {
     if (n <= 0) return;
@@ -70,27 +107,46 @@ public static void TOH(int n, char src, char dest, char aux) {
 }
 ```
 
-Use cases
-- Teaching recursion and algorithmic thinking; puzzle solvers.
-  
+---
+
+### Use Cases
+- Understanding recursion deeply
+- Algorithm design using divide-and-conquer
+- Puzzle solving and state transitions
+---
+## Practical-3: Permutations of a String
+
+### Aim
+Generate all permutations of a string using recursion and backtracking.
 
 ---
 
-## Practical-3: Permutations of a String
+### Algorithm (Backtracking)
 
-Aim
-- Generate all permutations of a string using recursion + backtracking.
+**Algorithm: PERM(s, i)**
 
-TC
-- O(n!)
+1. If \( i = n \),
+  - Output the current permutation of string \( s \)
+  - Return
+2. For \( j = i \) to \( n-1 \):
+  - Swap \( s[i] \) and \( s[j] \)
+  - Call \( PERM(s, i+1) \)
+  - Swap back \( s[i] \) and \( s[j] \) (backtracking)
 
-SC
-- O(n) (recursion depth)
+---
 
-Algorithm
-- Fix char at position i, permute the rest recursively; swap back (backtracking).
+### Time Complexity (TC)
+- \( O(n!) \)
 
-Code  
+---
+
+### Space Complexity (SC)
+- \( O(n) \) (recursion depth)
+
+---
+
+### Code    
+
 ```java
 public static void perm(char[] s, int i) {
     if (i == s.length) {
@@ -105,57 +161,93 @@ public static void perm(char[] s, int i) {
 }
 ```
 
-Use cases
-- Anagrams generation, testing, combinatorial enumeration.
+---
 
-Graphs
-- Lab 1/Images: none for this practical
+### Use Cases
+- Anagram generation
+- Combinatorial problems
+- Testing all possible arrangements
+
+---
+### Graphs
+![Permutation Graph](Lab%204/Images/Permutation.png)
+
+---
+## Practical-4: Velocity Reduction Using Recursion
+
+### Aim
+Count the number of steps required for a velocity \( v \) to drop below 1 when reduced by a fixed percentage at each step.
 
 ---
 
-## Practical-4: Velocity Reduction Using Recursion
+### Algorithm (Recursive Reduction)
 
-Aim
-- Count how many reductions are needed for velocity v to drop below 1 when reducing by a fixed percentage each step.
+**Algorithm: TIPS(v, t)**
 
-TC
-- O(k) where k is the number of steps until v < 1
+1. If \( v < 1 \), return \( t \)
+2. Set \( v = v \times (1 - r) \) where \( r \) is reduction rate
+3. Return \( TIPS(v, t+1) \)
 
-SC
-- O(k)
+---
 
-Algorithm
-- Repeatedly reduce v by a factor (example: reduce by 42.5%) and increment counter until v < 1.
+### Time Complexity (TC)
+- \( O(k) \), where \( k \) is number of reductions
 
-Code  
+---
+
+### Space Complexity (SC)
+- \( O(k) \)
+
+---
+
+### Code    
+
 ```java
-public static int tips(double v, int t) {
-    if (v < 1) return t;
-    return tips(v * (1 - 0.425), t + 1);
+public static int tips(double v,int t){
+    if (v>=1){
+        t++;
+        v = v - (0.425 * v);
+        return tips(v,t);
+    }
+    else return t;
 }
 ```
 
-Use cases
-- Simulations of decay processes, iterative stopping conditions.
-  
+---
+
+### Use Cases
+- Decay simulations
+- Physics-based modeling
+- Iterative threshold problems
+---
+## Practical-5: Horner's Rule Using Recursion
+
+### Aim
+Represent and evaluate a polynomial using Horner's Rule via recursion.
 
 ---
 
-## Practical-5: Horner's Rule Using Recursion
+### Algorithm (Recursive Horner's Rule)
 
-Aim
-- Represent/evaluate polynomial using Horner's rule via recursion.
+**Algorithm: HR(i, arr)**
 
-TC
-- O(n)
+1. If \( i = n-1 \), return \( arr[i] \)
+2. Return \( arr[i] + x \times HR(i+1, arr) \)
 
-SC
-- O(n)
+---
 
-Algorithm
-- Build nested expression from coefficients: a0 + x*(a1 + x*(a2 + ...)).
+### Time Complexity (TC)
+- \( O(n) \)
 
-Code  
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static String HR(int i, int[] arr) {
     if (i == arr.length - 1) return Integer.toString(arr[i]);
@@ -163,27 +255,44 @@ public static String HR(int i, int[] arr) {
 }
 ```
 
-Use cases
-- Efficient polynomial evaluation, compiler code generation, numeric libraries.
-  
+---
+
+### Use Cases
+- Polynomial evaluation
+- Compiler optimizations
+- Numerical computations
 
 ---
 
 ## Practical-6: Finding Duplicate in a Consecutive Array
 
-Aim
-- Find the duplicate element in an array of consecutive numbers.
+### Aim
+Find the duplicate element in an array containing consecutive integers.
 
-TC
-- O(n)
+---
 
-SC
-- O(1)
+### Algorithm (Linear Scan)
 
-Algorithm
-- One-pass scan comparing expected value vs actual; return first mismatch/duplicate.
+**Algorithm: FIND-DUP(nums)**
 
-Code  
+1. For \( i = 0 \) to \( n-1 \):
+  - If \( nums[i] \neq i \), return \( nums[i] \)
+2. Return -1
+
+---
+
+### Time Complexity (TC)
+- \( O(n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(1) \)
+
+---
+
+### Code    
+
 ```java
 public static int findDup(int[] nums) {
     for (int i = 0; i < nums.length; i++) {
@@ -193,93 +302,156 @@ public static int findDup(int[] nums) {
 }
 ```
 
-Use cases
-- Data validation in sequences, error detection.
-  
+---
+
+### Use Cases
+- Data validation
+- Detecting anomalies in sequences
 
 ---
 
 ## Practical-7: Selection Sort Using Recursion
 
-Aim
-- Sort an array using recursive selection sort.
+### Aim
+Sort an array using recursive selection sort.
 
-TC
-- O(n^2)
+---
 
-SC
-- O(n) (recursion depth)
+### Algorithm (Recursive Selection Sort)
 
-Algorithm
-- At index i find min from i..n-1, swap with i, recurse for i+1.
+**Algorithm: SS(arr, i)**
 
-Code  
+1. If \( i \geq n \), return
+2. Find index of minimum element in \( arr[i \dots n-1] \)
+3. Swap \( arr[i] \) with minimum element
+4. Call \( SS(arr, i+1) \)
+
+---
+
+### Time Complexity (TC)
+- \( O(n^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static void ss(int[] arr, int i) {
     if (i >= arr.length) return;
     int min = i;
-    for (int j = i + 1; j < arr.length; j++) if (arr[j] < arr[min]) min = j;
-    int tmp = arr[i]; arr[i] = arr[min]; arr[min] = tmp;
+    for (int j = i + 1; j < arr.length; j++) 
+        if (arr[j] < arr[min]) min = j;
+
+    int tmp = arr[i]; 
+    arr[i] = arr[min]; 
+    arr[min] = tmp;
+
     ss(arr, i + 1);
 }
 ```
 
-Use cases
-- Educational; small arrays.
+---
+
+### Use Cases
+- Learning sorting fundamentals
+- Small datasets where simplicity matters  
 
 Graphs
-- Lab 1/Images/graphSS.png
+![Selection Sort Time Complexity Graph](Lab%201/Images/Selection.png)
+
+---
+## Practical-8: Bubble Sort Using Recursion
+
+### Aim
+Sort an array using recursive bubble sort and measure execution time.
 
 ---
 
-## Practical-8: Bubble Sort Using Recursion
+### Algorithm (Recursive Bubble Sort)
 
-Aim
-- Sort an array using recursive bubble sort and measure execution time.
+**Algorithm: BB(arr, n)**
 
-TC
-- Best: O(n), Average/Worst: O(n^2)
+1. If \( n = 1 \), return
+2. For \( i = 0 \) to \( n-2 \):
+  - If \( arr[i] > arr[i+1] \), swap them
+3. Call \( BB(arr, n-1) \)
 
-SC
-- O(n) (recursion depth)
+---
 
-Algorithm
-- Perform one pass swapping adjacent out-of-order elements, then recurse for n-1.
+### Time Complexity (TC)
+- Best: \( O(n) \)
+- Average/Worst: \( O(n^2) \)
 
-Code  
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static void bb(int[] arr, int n) {
     if (n == 1) return;
-    for (int i = 0; i < n - 1; i++) if (arr[i] > arr[i + 1]) {
-        int t = arr[i]; arr[i] = arr[i + 1]; arr[i + 1] = t;
-    }
+    for (int i = 0; i < n - 1; i++) 
+        if (arr[i] > arr[i + 1]) {
+            int t = arr[i]; 
+            arr[i] = arr[i + 1]; 
+            arr[i + 1] = t;
+        }
     bb(arr, n - 1);
 }
 ```
 
-Use cases
-- Teaching basic sorting and algorithm analysis.
+---
 
-Graphs
-- Lab 1/Images/graphBB.png
+### Use Cases
+- Teaching sorting basics
+- Understanding algorithm complexity
+
+---
+
+### Graphs
+![Bubble Sort Time Complexity Graph](Lab%201/Images/Bubble.png)
 
 ---
 
 ## Practical-9: Linear Search Using Recursion
 
-Aim
-- Find a target in array using recursive linear search.
+### Aim
+Find a target element in an array using recursive linear search.
 
-TC
-- Best: O(1), Average/Worst: O(n)
+---
 
-SC
-- O(n)
+### Algorithm (Recursive Linear Search)
 
-Algorithm
-- Check current index; if not target recurse to next index.
+**Algorithm: LS(arr, target, i)**
 
-Code  
+1. If \( i \geq n \), return -1
+2. If \( arr[i] = target \), return \( i \)
+3. Return \( LS(arr, target, i+1) \)
+
+---
+
+### Time Complexity (TC)
+- Best: \( O(1) \)
+- Average/Worst: \( O(n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static int LS(int[] arr, int target, int i) {
     if (i >= arr.length) return -1;
@@ -288,29 +460,51 @@ public static int LS(int[] arr, int target, int i) {
 }
 ```
 
-Use cases
-- Small data sets, pedagogical examples.
+---
 
-Graphs
-- Lab 1/Images/graphLS.png
+### Use Cases
+- Small datasets
+- Basic searching problems
 
 ---
 
-## Practical-10 / Practical-14: Binary Search Using Recursion
+### Graphs
+![Linear Search Time Complexity Graph](Lab%201/Images/Linear.png)
 
-Aim
-- Search for a target in a sorted array using recursive binary search and measure time.
+---
 
-TC
-- Best: O(1), Average/Worst: O(log n)
+## Practical-10: Binary Search Using Recursion
 
-SC
-- O(log n)
+### Aim
+Search for a target in a sorted array using recursive binary search and measure execution time.
 
-Algorithm
-- Compare middle element; recurse to left or right half accordingly.
+---
 
-Code  
+### Algorithm (Recursive Binary Search)
+
+**Algorithm: BS(arr, t, s, e)**
+
+1. If \( s > e \), return -1
+2. Compute \( m = \lfloor (s+e)/2 \rfloor \)
+3. If \( arr[m] = t \), return \( m \)
+4. If \( arr[m] > t \), return \( BS(arr, t, s, m-1) \)
+5. Else return \( BS(arr, t, m+1, e) \)
+
+---
+
+### Time Complexity (TC)
+- Best: \( O(1) \)
+- Average/Worst: \( O(\log n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(\log n) \)
+
+---
+
+### Code    
+
 ```java
 public static int BS(int[] arr, int t, int s, int e) {
     if (s > e) return -1;
@@ -321,312 +515,600 @@ public static int BS(int[] arr, int t, int s, int e) {
 }
 ```
 
-Use cases
-- Large sorted datasets, lookups, dictionaries.
+---
 
-Graphs
-- Lab 2/Images/BinarySearch.png
+### Use Cases
+- Efficient searching in sorted data
+- Databases and lookup systems
 
 ---
 
+### Graphs
+![Binary Search Time Complexity Graph](Lab%202/Images/BinarySearch.png)
+
+---
 ## Practical-11: Insertion Sort
 
-Aim
-- Sort array using insertion sort and measure performance.
+### Aim
+Sort an array using insertion sort and measure performance.
 
-TC
-- Best: O(n), Average/Worst: O(n^2)
+---
 
-SC
-- O(1)
+### Algorithm (Insertion Sort)
 
-Algorithm
-- Insert each element into correct position in sorted prefix.
+**Algorithm: IS(arr)**
 
-Code  
+1. For \( i = 1 \) to \( n-1 \):
+    - Set \( key = arr[i] \)
+    - Set \( j = i-1 \)
+    - While \( j \geq 0 \) and \( arr[j] > key \):
+        - Shift \( arr[j] \) to \( arr[j+1] \)
+        - Decrement \( j \)
+    - Insert \( key \) at position \( j+1 \)
+
+---
+
+### Time Complexity (TC)
+- Best: \( O(n) \)
+- Average/Worst: \( O(n^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(1) \)
+
+---
+
+### Code    
+
 ```java
 public static void IS(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
-        int key = arr[i]; int j = i - 1;
-        while (j >= 0 && arr[j] > key) { arr[j + 1] = arr[j]; j--; }
+        int key = arr[i]; 
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) { 
+            arr[j + 1] = arr[j]; 
+            j--; 
+        }
         arr[j + 1] = key;
     }
 }
 ```
 
-Use cases
-- Small nearly-sorted arrays, insertion in online streams.
+---
 
-Graphs
-- Lab 2/Images/InsertionSort.png
+### Use Cases
+- Small datasets
+- Nearly sorted arrays
+- Online/incremental sorting
 
 ---
 
+### Graphs
+![Insertion Sort Time Complexity Graph](Lab%202/Images/InsertionSort.png)
+
+---
 ## Practical-12: Merge Sort Using Recursion
 
-Aim
-- Sort array using merge sort and measure time for different n.
+### Aim
+Sort an array using merge sort and analyze performance for different input sizes.
 
-TC
-- O(n log n) all cases
+---
 
-SC
-- O(n) (extra array)
+### Algorithm (Divide and Conquer)
 
-Algorithm
-- Divide array into halves, sort recursively, merge sorted halves.
+**Algorithm: MS(arr, s, e)**
 
-Code  
+1. If \( s \geq e \), return
+2. Compute \( m = \lfloor (s+e)/2 \rfloor \)
+3. Call \( MS(arr, s, m) \)
+4. Call \( MS(arr, m+1, e) \)
+5. Merge the two sorted halves
+
+---
+
+### Time Complexity (TC)
+- \( O(n \log n) \) (all cases)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static void ms(int[] arr, int s, int e) {
     if (s >= e) return;
     int m = s + (e - s) / 2;
-    ms(arr, s, m); ms(arr, m + 1, e);
-    // merge step (omitted here in full)
+
+    ms(arr, s, m); 
+    ms(arr, m + 1, e);
+
+    merge(arr, s, m, e);
+}
+
+public static void merge(int[] arr, int s, int m, int e) {
+    int[] temp = new int[e - s + 1];
+    int i = s, j = m + 1, k = 0;
+
+    while (i <= m && j <= e) {
+        if (arr[i] <= arr[j]) temp[k++] = arr[i++];
+        else temp[k++] = arr[j++];
+    }
+
+    while (i <= m) temp[k++] = arr[i++];
+    while (j <= e) temp[k++] = arr[j++];
+
+    for (int x = 0; x < temp.length; x++) {
+        arr[s + x] = temp[x];
+    }
 }
 ```
 
-Use cases
-- Large datasets, stable sorting needs.
+---
 
-Graphs
-- Lab 3/Images/MergeSort.png
+### Use Cases
+- Large datasets
+- Stable sorting requirements
+- External sorting systems
 
 ---
 
+Graphs
+![Merge Sort Time Complexity Graph](Lab%203/Images/MergeSort.png)
+
+---
 ## Practical-13: Quick Sort Using Recursion
 
-Aim
-- Sort using quick sort and observe performance characteristics.
+### Aim
+Sort using quick sort and observe performance characteristics.
 
-TC
-- Best/Average: O(n log n), Worst: O(n^2)
+---
 
-SC
-- Average: O(log n) (stack), Worst: O(n)
+### Algorithm (Divide and Conquer)
 
-Algorithm
-- Partition around pivot and recurse on partitions.
+**Algorithm: QS(arr, s, e)**
 
-Code  
+1. If \( s \geq e \), return
+2. Choose pivot element
+3. Partition array such that:
+    - Elements < pivot on left
+    - Elements > pivot on right
+4. Recursively apply on left and right partitions
+
+---
+
+### Time Complexity (TC)
+- Best/Average: \( O(n \log n) \)
+- Worst: \( O(n^2) \)
+
+---
+
+### Space Complexity (SC)
+- Average: \( O(\log n) \)
+- Worst: \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static void qs(int[] arr, int s, int e) {
     if (s >= e) return;
+
     int pivot = arr[(s + e) / 2];
     int i = s, j = e;
+
     while (i <= j) {
         while (arr[i] < pivot) i++;
         while (arr[j] > pivot) j--;
-        if (i <= j) { int t = arr[i]; arr[i++] = arr[j]; arr[j--] = t; }
+        if (i <= j) { 
+            int t = arr[i]; 
+            arr[i++] = arr[j]; 
+            arr[j--] = t; 
+        }
     }
-    qs(arr, s, j); qs(arr, i, e);
+
+    qs(arr, s, j); 
+    qs(arr, i, e);
 }
 ```
 
-Use cases
-- General-purpose fast in-memory sorting.
+---
 
-Graphs
-- Lab 3/Images/QuickSort.png
+### Use Cases
+- General-purpose in-memory sorting
+- High-performance applications
 
 ---
 
-## Practical-15: Permutation (lab 4)
+### Graphs
+![Quick Sort Time Complexity Graph](Lab%203/Images/QuickSort.png)
 
-Same as Practical-3 (permutations). Graph: Lab 4/Images/Permutation.png
+---
+## Practical-14: Iterative Quick Sort
+
+### Aim
+Implement quick sort using an explicit stack instead of recursion.
 
 ---
 
-## Practical-16: Iterative Quick Sort
+### Algorithm (Iterative using Stack)
 
-Aim
-- Quick sort using an explicit stack instead of recursion.
+**Algorithm: QSI(arr, s, e)**
 
-TC
-- O(n log n) average
+1. Initialize stack and push \( (s, e) \)
+2. While stack is not empty:
+    - Pop range \( (l, r) \)
+    - Partition array around pivot
+    - Push left and right subarrays onto stack if valid
 
-SC
-- O(log n) average for stack
+---
 
-Code  
+### Time Complexity (TC)
+- Average: \( O(n \log n) \)
+
+---
+
+### Space Complexity (SC)
+- Average: \( O(\log n) \)
+
+---
+
+### Code    
+
 ```java
 public static void qsi(int[] arr, int s, int e) {
     java.util.Deque<int[]> stack = new java.util.ArrayDeque<>();
     stack.push(new int[] {s, e});
+
     while (!stack.isEmpty()) {
-        int[] range = stack.pop(); int l = range[0], r = range[1];
+        int[] range = stack.pop(); 
+        int l = range[0], r = range[1];
+
         if (l >= r) continue;
-        int pivot = arr[(l + r) / 2]; int i = l, j = r;
+
+        int pivot = arr[(l + r) / 2];
+        int i = l, j = r;
+
         while (i <= j) {
             while (arr[i] < pivot) i++;
             while (arr[j] > pivot) j--;
-            if (i <= j) { int t = arr[i]; arr[i++] = arr[j]; arr[j--] = t; }
+            if (i <= j) { 
+                int t = arr[i]; 
+                arr[i++] = arr[j]; 
+                arr[j--] = t; 
+            }
         }
+
         if (l < j) stack.push(new int[] {l, j});
         if (i < r) stack.push(new int[] {i, r});
     }
 }
 ```
+---
 
-Graphs
-- Lab 4/Images/QuickSort.png
+### Graphs
+![Quick Sort (Iterative) Time Complexity Graph](Lab%204/Images/QuickSort.png)
+
+---
+## Practical-15: Convex Hull
+
+### Aim
+Compute the convex hull of a set of planar points using monotone chain (or Graham scan style).
 
 ---
 
-## Practical-17: Convex Hull
+### Algorithm (Monotone Chain)
 
-Aim
-- Compute convex hull of planar points (Graham scan / monotone chain style).
+**Algorithm: CONVEX-HULL(points)**
 
-TC
-- O(n log n)
+1. Sort points by x-coordinate, then by y-coordinate
+2. Build lower hull:
+    - For each point, remove last point while it makes a non-left turn
+3. Build upper hull similarly in reverse order
+4. Concatenate lower and upper hulls
 
-SC
-- O(n)
+---
 
-Code  
+### Time Complexity (TC)
+- \( O(n \log n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
-public static java.util.List<java.awt.Point> convexHull(java.util.List<java.awt.Point> pts) {
-    // sort by x,y then build lower and upper hulls (monotone chain)
-    // (implementation omitted for brevity)
-    return new java.util.ArrayList<>();
+public static List<Point> convexHull(List<Point> points) {
+    int n = points.size();
+    if (n < 3) return points;
+
+    Point p0 = points.get(0);
+    for (Point p : points) {
+        if (p.y < p0.y || (p.y == p0.y && p.x < p0.x)) {
+            p0 = p;
+        }
+    }
+
+    Point finalP0 = p0;
+
+    points.sort((a, b) -> {
+        double o = orientation(finalP0, a, b);
+        if (o == 0)
+            return Double.compare(distSq(finalP0, a), distSq(finalP0, b));
+        return (o > 0) ? -1 : 1;
+    });
+
+    Stack<Point> stack = new Stack<>();
+    stack.push(points.get(0));
+    stack.push(points.get(1));
+    stack.push(points.get(2));
+
+    for (int i = 3; i < n; i++) {
+        while (stack.size() > 1 &&
+                orientation(nextToTop(stack), stack.peek(), points.get(i)) <= 0) {
+            stack.pop();
+        }
+        stack.push(points.get(i));
+    }
+
+    return new ArrayList<>(stack);
 }
 ```
 
-Graphs
-- Lab 5/Images/ConvexHull.png
+---
+### Graphs
+![Convex Hull Time Complexity Graph](Lab%205/Images/ConvexHull.png)
+
+---
+## Practical-16: Fractional Knapsack
+
+### Aim
+Maximize value in a knapsack allowing fractional items using a greedy approach.
 
 ---
 
-## Practical-18: Fractional Knapsack
+### Algorithm (Greedy)
 
-Aim
-- Maximize value with fractional items (greedy by value/weight ratio).
+**Algorithm: KNAPSACK(W, wt, val)**
 
-TC
-- O(n log n) (sorting)
+1. Compute value/weight ratio for each item
+2. Sort items in decreasing order of ratio
+3. For each item:
+    - Take as much as possible (fully or fractionally)
+    - Reduce remaining capacity \( W \)
+4. Return total value
 
-SC
-- O(1) additional
+---
 
-Code  
+### Time Complexity (TC)
+- \( O(n \log n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(1) \) (excluding input)
+
+---
+
+### Code    
+
 ```java
 public static double knapSack(int W, int[] wt, int[] val) {
     int n = wt.length;
     Integer[] idx = new Integer[n];
+
     for (int i = 0; i < n; i++) idx[i] = i;
-    java.util.Arrays.sort(idx, (a,b) -> Double.compare((double)val[b]/wt[b], (double)val[a]/wt[a]));
+
+    java.util.Arrays.sort(idx, 
+        (a, b) -> Double.compare((double)val[b]/wt[b], (double)val[a]/wt[a])
+    );
+
     double res = 0;
+
     for (int i : idx) {
         if (W == 0) break;
+
         int take = Math.min(W, wt[i]);
         res += (double) take * val[i] / wt[i];
         W -= take;
     }
+
     return res;
 }
 ```
 
-Graphs
-- Lab 5/Images/KnapSack.png
+---
+
+### Graphs
+![Fractional Knapsack Time Complexity Graph](Lab%205/Images/KnapSack.png)
+
+---
+## Practical-17: K-th Smallest (Quickselect)
+
+### Aim
+Find the k-th smallest element in an array more efficiently than full sorting.
 
 ---
 
-## Practical-19: K-th Smallest (Quickselect)
+### Algorithm (Quickselect)
 
-Aim
-- Find k-th smallest element faster than full sort.
+**Algorithm: QUICKSELECT(a, k, l, r)**
 
-TC
-- Average: O(n), Worst: O(n^2)
+1. If \( l = r \), return \( a[l] \)
+2. Choose a pivot element
+3. Partition the array such that:
+    - Elements < pivot on left
+    - Elements > pivot on right
+4. If \( k \leq j \), recurse on left partition
+5. If \( k \geq i \), recurse on right partition
+6. Else return \( a[k] \)
 
-SC
-- O(log n) average
+---
 
-Code  
+### Time Complexity (TC)
+- Average: \( O(n) \)
+- Worst: \( O(n^2) \)
+
+---
+
+### Space Complexity (SC)
+- Average: \( O(\log n) \)
+
+---
+
+### Code    
+
 ```java
 public static int quickselect(int[] a, int k, int l, int r) {
     if (l == r) return a[l];
+
     int pivot = a[l + (r - l) / 2];
     int i = l, j = r;
+
     while (i <= j) {
         while (a[i] < pivot) i++;
         while (a[j] > pivot) j--;
-        if (i <= j) { int t = a[i]; a[i++] = a[j]; a[j--] = t; }
+        if (i <= j) { 
+            int t = a[i]; 
+            a[i++] = a[j]; 
+            a[j--] = t; 
+        }
     }
+
     if (k <= j) return quickselect(a, k, l, j);
     if (k >= i) return quickselect(a, k, i, r);
+
     return a[k];
 }
 ```
 
-Graphs
-- Lab 5/Images/KthSmallest.png
+---
+
+### Graphs
+![K-th Smallest Time Complexity Graph](Lab%205/Images/KthSmallest.png)
+
+---
+## Practical-18: Max and Min Using Divide and Conquer
+
+### Aim
+Find both maximum and minimum elements in an array using divide-and-conquer.
 
 ---
 
-## Practical-20: Max and Min Using Divide and Conquer
+### Algorithm (Divide and Conquer)
 
-Aim
-- Find both min and max in an array using divide-and-conquer.
+**Algorithm: MAX-MIN(a, l, r)**
 
-TC
-- O(n)
+1. If \( l = r \), return \( (a[l], a[l]) \)
+2. Compute \( m = \lfloor (l+r)/2 \rfloor \)
+3. Find \( (max_1, min_1) = MAX\text{-}MIN(a, l, m) \)
+4. Find \( (max_2, min_2) = MAX\text{-}MIN(a, m+1, r) \)
+5. Return:
+    - \( \max(max_1, max_2) \)
+    - \( \min(min_1, min_2) \)
 
-SC
-- O(log n)
+---
 
-Code  
+### Time Complexity (TC)
+- \( O(n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(\log n) \)
+
+---
+
+### Code    
+
 ```java
 public static int[] max_min(int[] a, int l, int r) {
     if (l == r) return new int[]{a[l], a[l]};
+
     int m = (l + r) / 2;
+
     int[] L = max_min(a, l, m);
-    int[] R = max_min(a, m+1, r);
-    return new int[]{Math.max(L[0], R[0]), Math.min(L[1], R[1])};
+    int[] R = max_min(a, m + 1, r);
+
+    return new int[]{
+        Math.max(L[0], R[0]),
+        Math.min(L[1], R[1])
+    };
 }
 ```
 
-Graphs
-- Lab 5/Images/MaxMin.png
+---
+
+### Graphs
+![Max-Min Time Complexity Graph](Lab%205/Images/MaxMin.png)
+
+---
+## Practical-19: Dijkstra's Shortest Path
+
+### Aim
+Compute shortest paths from a single source in a weighted graph with non-negative weights.
 
 ---
 
-## Practical-21: Quick Sort on Float Array
+### Algorithm (Greedy with Priority Queue)
 
-Same as Quick Sort but on float[].
+**Algorithm: DIJKSTRA(graph, src)**
 
-Graphs
-- Lab 5/Images/QuickSort.png
+1. Initialize distance array with infinity, set \( dist[src] = 0 \)
+2. Use a priority queue to select node with minimum distance
+3. For each adjacent vertex:
+    - Update distance if a shorter path is found
+4. Repeat until all vertices are processed
 
 ---
 
-## Practical-22: Dijkstra's Shortest Path
+### Time Complexity (TC)
+- \( O((V + E) \log V) \)
 
-Aim
-- Compute shortest paths from single source in weighted graphs with non-negative weights.
+---
 
-TC
-- O((V + E) log V) with a priority queue
+### Space Complexity (SC)
+- \( O(V) \)
 
-SC
-- O(V)
+---
 
-Code  
+### Code    
+
 ```java
 public static int[] dijkstra(int[][] graph, int src) {
     int n = graph.length;
-    int[] dist = new int[n]; java.util.Arrays.fill(dist, Integer.MAX_VALUE);
+
+    int[] dist = new int[n];
+    java.util.Arrays.fill(dist, Integer.MAX_VALUE);
     dist[src] = 0;
-    java.util.PriorityQueue<int[]> pq = new java.util.PriorityQueue<>(java.util.Comparator.comparingInt(a -> a[1]));
+
+    java.util.PriorityQueue<int[]> pq = 
+        new java.util.PriorityQueue<>(java.util.Comparator.comparingInt(a -> a[1]));
+
     pq.add(new int[]{src, 0});
+
     while (!pq.isEmpty()) {
-        int[] cur = pq.poll(); int u = cur[0], d = cur[1];
+        int[] cur = pq.poll(); 
+        int u = cur[0], d = cur[1];
+
         if (d > dist[u]) continue;
+
         for (int v = 0; v < n; v++) {
             if (graph[u][v] >= 0) {
                 int nd = d + graph[u][v];
-                if (nd < dist[v]) { dist[v] = nd; pq.add(new int[]{v, nd}); }
+                if (nd < dist[v]) { 
+                    dist[v] = nd; 
+                    pq.add(new int[]{v, nd}); 
+                }
             }
         }
     }
@@ -634,104 +1116,265 @@ public static int[] dijkstra(int[][] graph, int src) {
 }
 ```
 
-Graphs
-- Lab 6/Images/Dijsktra.png
+---
+
+### Graphs
+![Dijkstra's Shortest Path Time Complexity Graph](Lab%206/Images/Dijsktra.png)
+
+---
+## Practical-20: Prim's Algorithm for MST
+
+### Aim
+Construct a Minimum Spanning Tree using Prim's greedy approach.
 
 ---
 
-## Practical-23: Prim's Algorithm for MST
+### Algorithm (Greedy)
 
-Aim
-- Build MST using Prim's greedy approach.
+**Algorithm: PRIMS(graph)**
 
-TC
-- O(V^2) (matrix), O(E log V) (with heap)
+1. Initialize all vertices as not included in MST
+2. Start from any vertex (e.g., 0)
+3. Select minimum weight edge connecting MST to a new vertex
+4. Add selected vertex to MST
+5. Repeat until all vertices are included
 
-SC
-- O(V)
+---
 
-Code  
+### Time Complexity (TC)
+- \( O(V^2) \) (matrix)
+- \( O(E \log V) \) (with heap)
+
+---
+
+### Space Complexity (SC)
+- \( O(V) \)
+
+---
+
+### Code    
+
 ```java
 public static void prims(int[][] graph) {
-    int n = graph.length; boolean[] used = new boolean[n]; int[] dist = new int[n];
-    java.util.Arrays.fill(dist, Integer.MAX_VALUE); dist[0] = 0;
+    int n = graph.length;
+
+    boolean[] used = new boolean[n];
+    int[] dist = new int[n];
+
+    java.util.Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[0] = 0;
+
     for (int i = 0; i < n; i++) {
         int v = -1;
-        for (int j = 0; j < n; j++) if (!used[j] && (v == -1 || dist[j] < dist[v])) v = j;
+
+        for (int j = 0; j < n; j++) 
+            if (!used[j] && (v == -1 || dist[j] < dist[v])) 
+                v = j;
+
         used[v] = true;
-        for (int to = 0; to < n; to++) if (graph[v][to] >= 0 && graph[v][to] < dist[to]) dist[to] = graph[v][to];
+
+        for (int to = 0; to < n; to++) 
+            if (graph[v][to] >= 0 && graph[v][to] < dist[to]) 
+                dist[to] = graph[v][to];
     }
 }
 ```
 
 ---
 
-## Practical-24: Kruskal's Algorithm for MST
+## Practical-21: Kruskal's Algorithm for MST
 
-Aim
-- Build MST by sorting edges and using union-find to avoid cycles.
+### Aim
+Construct a Minimum Spanning Tree by sorting edges and avoiding cycles using union-find.
 
-TC
-- O(E log E)
+---
 
-SC
-- O(V + E)
+### Algorithm (Greedy + Union-Find)
 
-Code (dedicated function - outline)
+**Algorithm: KRUSKAL(edges, V)**
+
+1. Sort all edges by weight
+2. Initialize disjoint sets for all vertices
+3. For each edge:
+    - If it connects two different sets, include it in MST
+    - Union the sets
+4. Repeat until MST has \( V-1 \) edges
+
+---
+
+### Time Complexity (TC)
+- \( O(E \log E) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(V + E) \)
+
+---
+
+### Code    
+
 ```java
-public static int kruskal(java.util.List<int[]> edges, int V) {
-    edges.sort(java.util.Comparator.comparingInt(a -> a[2]));
-    int[] parent = new int[V]; for (int i = 0; i < V; i++) parent[i] = i;
-    java.util.function.IntUnaryOperator find = x -> { while (parent[x] != x) x = parent[x]; return x; };
-    // union-find steps omitted in README; placeholder return
-    return 0;
+public static void kruskal(List<Edge> edges, int n) {
+    edges.sort((a, b) -> a.w - b.w);
+
+    parent = new int[n];
+    Arrays.fill(parent, -1);
+
+    int cost = 0;
+    int count = 0;
+
+    for (Edge e : edges) {
+        if (find(e.u) != find(e.v)) {
+            union(e.u, e.v);
+            cost += e.w;
+            count++;
+        }
+    }
+
+    if (count != n - 1) {
+        System.out.println("Graph is not connected, MST not possible");
+        return;
+    }
+}
+```
+
+**Reference:** See `Lab 6/src/Kruskals.java` for the full implementation.
+
+---
+### Graphs
+![Kruskal's MST Time Complexity Graph](Lab%206/Images/Kruskal.png)
+
+---
+## Practical-22: Stage Construction in Multistage Graph
+
+### Aim
+Construct stages of a multistage graph from a given adjacency matrix.
+
+---
+
+### Algorithm
+
+**Algorithm: FIND-STAGE(graph)**
+
+1. Initialize first stage with source vertex (0)
+2. Mark it visited
+3. For each stage:
+    - Explore adjacent unvisited vertices
+    - Add them to next stage
+4. Repeat until no new vertices are found
+
+---
+
+### Time Complexity (TC)
+- \( O(V^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(V) \)
+
+---
+
+### Code 
+
+```java
+static List<Set<Integer>> s;
+static int INF = 10000000;
+
+private static void findStage(int[][] g) {
+    s = new ArrayList<>();
+    boolean[] visited = new boolean[g.length];
+
+    Set<Integer> t = new HashSet<>();
+    t.add(0);
+    visited[0] = true;
+    s.add(t);
+
+    int i = 0;
+
+    while (i < s.size()) {
+        Set<Integer> st = new HashSet<>();
+        for (int e : s.get(i)) {
+            for (int j = 0; j < g.length; j++) {
+                if (g[e][j] != 0 && g[e][j] != INF && !visited[j]) {
+                    st.add(j);
+                    visited[j] = true;
+                }
+            }
+        }
+        if (!st.isEmpty()) s.add(st);
+        i++;
+    }
 }
 ```
 
 ---
 
-## Practical-25 / 26 / 27: Multistage Graph — Stage ID, Forward & Backward Methods
-
-Aim
-- Identify stages in a directed acyclic multistage graph and compute minimum-cost paths using forward/backward DP.
-
-TC
-- O(V^2) for simple matrix-based implementations
-
-SC
-- O(V)
-
-Code (dedicated function for forward method outline)
-```java
-public static int fGraph(int[][] adj, java.util.List<java.util.Set<Integer>> stages) {
-    // compute cost[] from rightmost stage to left using dynamic programming
-    return 0; // minimal cost
-}
-```
+### Use Cases
+- Layered graph construction
+- Preprocessing for multistage shortest path
+- DAG structuring
 
 ---
 
-## Practical-28: Matrix Chain Multiplication
+## Practical-23: Multistage Graph (Backward Approach)
 
-Aim
-- Find optimal parenthesization minimizing scalar multiplications.
+### Aim
+Find shortest path in a multistage graph using backward approach.
 
-TC
-- O(n^3)
+---
 
-SC
-- O(n^2)
+### Algorithm
 
-Code  
+**Algorithm: BACKWARD-MS(graph)**
+
+1. Construct stages
+2. Initialize cost[source] = 0
+3. Traverse stage-wise
+4. Relax edges between consecutive stages
+5. Track parent to reconstruct path
+
+---
+
+### Time Complexity (TC)
+- \( O(V^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(V) \)
+
+---
+
+### Code    
+
 ```java
-public static void matrixChainOrder(int[] p) {
-    int n = p.length - 1;
-    int[][] m = new int[n+1][n+1];
-    for (int L = 2; L <= n; L++) for (int i = 1; i <= n-L+1; i++) {
-        int j = i+L-1; m[i][j] = Integer.MAX_VALUE;
-        for (int k = i; k <= j-1; k++) {
-            int q = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];
-            if (q < m[i][j]) { m[i][j] = q; }
+private static void bGraph(int[][] graph) {
+    findStage(graph);
+
+    int n = graph.length;
+    int stages = s.size();
+
+    int[] cost = new int[n];
+    int[] parent = new int[n];
+
+    Arrays.fill(cost, INF);
+    cost[0] = 0;
+
+    for (int i = 0; i < stages - 1; i++) {
+        List<Integer> curr = new ArrayList<>(s.get(i));
+        List<Integer> next = new ArrayList<>(s.get(i + 1));
+
+        for (int u : curr) {
+            for (int v : next) {
+                if (graph[u][v] != INF) {
+                    if (cost[v] > cost[u] + graph[u][v]) {
+                        cost[v] = cost[u] + graph[u][v];
+                        parent[v] = u;
+                    }
+                }
+            }
         }
     }
 }
@@ -739,21 +1382,181 @@ public static void matrixChainOrder(int[] p) {
 
 ---
 
-## Practical-29: Floyd-Warshall
+### Use Cases
+- Shortest path in staged graphs
+- Network optimization
+- DAG-based DP problems
 
-Aim
-- Compute all-pairs shortest paths.
+---
 
-TC
-- O(V^3)
+## Practical-24: Multistage Graph (Forward Approach)
 
-SC
-- O(V^2)
+### Aim
+Find shortest path in a multistage graph using forward dynamic programming.
 
-Code  
+---
+
+### Algorithm
+
+**Algorithm: FORWARD-MS(graph)**
+
+1. Construct stages
+2. Initialize cost[destination] = 0
+3. Traverse stages backward
+4. Compute minimum cost using next stage
+5. Store decisions for path reconstruction
+
+---
+
+### Time Complexity (TC)
+- \( O(V^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(V) \)
+
+---
+
+### Code    
+
+```java
+private static void fGraph(int[][] graph) {
+    findStage(graph);
+
+    int n = graph.length;
+    int stages = s.size();
+
+    int[] cost = new int[n];
+    int[] d = new int[n];
+
+    Arrays.fill(cost, INF);
+    cost[n - 1] = 0;
+
+    for (int i = stages - 2; i >= 0; i--) {
+        List<Integer> curr = new ArrayList<>(s.get(i));
+        List<Integer> next = new ArrayList<>(s.get(i + 1));
+
+        for (int u : curr) {
+            for (int v : next) {
+                if (graph[u][v] != INF) {
+                    if (cost[u] > graph[u][v] + cost[v]) {
+                        cost[u] = graph[u][v] + cost[v];
+                        d[u] = v;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+### Use Cases
+- Dynamic programming on DAGs
+- Decision optimization problems
+- Multistage shortest path
+
+---
+## Practical-25: Matrix Chain Multiplication
+
+### Aim
+Find the optimal parenthesization of matrices to minimize scalar multiplications.
+
+---
+
+### Algorithm (Dynamic Programming)
+
+**Algorithm: MATRIX-CHAIN(p)**
+
+1. Let \( n = length(p) - 1 \)
+2. Initialize \( m[i][i] = 0 \)
+3. For chain length \( L = 2 \) to \( n \):
+    - For \( i = 1 \) to \( n-L+1 \):
+        - Set \( j = i + L - 1 \)
+        - Set \( m[i][j] = \infty \)
+        - For \( k = i \) to \( j-1 \):
+            - Compute cost
+            - Update minimum value
+
+---
+
+### Time Complexity (TC)
+- \( O(n^3) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n^2) \)
+
+---
+
+### Code    
+
+```java
+public static void matrixChainOrder(int[] p) {
+    int n = p.length - 1;
+    int[][] m = new int[n+1][n+1];
+
+    for (int L = 2; L <= n; L++) 
+        for (int i = 1; i <= n - L + 1; i++) {
+            int j = i + L - 1;
+            m[i][j] = Integer.MAX_VALUE;
+
+            for (int k = i; k <= j - 1; k++) {
+                int q = m[i][k] + m[k+1][j] + p[i-1] * p[k] * p[j];
+                if (q < m[i][j]) m[i][j] = q;
+            }
+        }
+}
+```
+
+---
+
+### Use Cases
+- Optimizing matrix operations in scientific computing
+- Compiler optimization (expression evaluation order)
+- Graphics transformations
+
+---
+### Graphs
+![Matrix Chain Multiplication Time Complexity Graph](Lab%208/Images/MCM.png)
+
+---
+## Practical-26: Floyd-Warshall
+
+### Aim
+Compute shortest paths between all pairs of vertices.
+
+---
+
+### Algorithm (Dynamic Programming)
+
+**Algorithm: FLOYD-WARSHALL(dist)**
+
+1. For each vertex \( k \):
+2. For each pair \( (i, j) \):
+    - Update \( dist[i][j] = \min(dist[i][j], dist[i][k] + dist[k][j]) \)
+
+---
+
+### Time Complexity (TC)
+- \( O(V^3) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(V^2) \)
+
+---
+
+### Code    
+
 ```java
 public static void floydWarshall(int[][] dist) {
     int n = dist.length;
+
     for (int k = 0; k < n; k++)
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
@@ -762,104 +1565,351 @@ public static void floydWarshall(int[][] dist) {
 }
 ```
 
-Graphs
-- Lab 9/Images/FloydWarshall.png
+---
+
+### Use Cases
+- Network routing protocols
+- Shortest path in dense graphs
+- Transitive closure (reachability problems)
 
 ---
 
-## Practical-30 / 31: Traveling Salesman (Backtracking & DP)
+### Graphs
+![Floyd-Warshall All-Pairs Shortest Path Graph](Lab%209/Images/FloydWarshall.png)
 
-Backtracking Code  
-```java
-public int tspBacktrack(int[][] cost) {
-    int n = cost.length; boolean[] vis = new boolean[n]; vis[0] = true; return DFS(vis, cost, 0, 1);
-}
-private int DFS(boolean[] vis, int[][] cost, int u, int cnt) {
-    int n = cost.length; if (cnt == n) return cost[u][0];
-    int best = Integer.MAX_VALUE;
-    for (int v = 1; v < n; v++) if (!vis[v]) { vis[v]=true; best = Math.min(best, cost[u][v] + DFS(vis, cost, v, cnt+1)); vis[v]=false; }
-    return best;
-}
-```
+---
 
-DP Code  
+## Practical-27: Traveling Salesman Problem (Dynamic Programming)
+
+### Aim
+Solve TSP efficiently using Dynamic Programming (Bitmasking).
+
+---
+
+### Algorithm (DP with Bitmasking)
+
+**Algorithm: TSP-DP(n, cost)**
+
+1. Use bitmask to represent visited cities
+2. Initialize DP table
+3. Iterate over all subsets of cities
+4. Update minimum cost for each subset
+5. Return minimum cost including return to source
+
+---
+
+### Time Complexity (TC)
+- \( O(n^2 \cdot 2^n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n \cdot 2^n) \)
+
+---
+
+### Code    
+
 ```java
 public static int tspDP(int n, int[][] cost) {
-    final int INF = Integer.MAX_VALUE/4;
-    int VIS = 1<<n; int[][] dp = new int[VIS][n];
-    for (int[] row: dp) java.util.Arrays.fill(row, INF);
+    final int INF = Integer.MAX_VALUE / 4;
+
+    int VIS = 1 << n; 
+    int[][] dp = new int[VIS][n];
+
+    for (int[] row : dp) java.util.Arrays.fill(row, INF);
     dp[1][0] = 0;
-    for (int mask = 1; mask < VIS; mask++) for (int u = 0; u < n; u++) if ((mask & (1<<u))!=0) {
-        for (int v = 0; v < n; v++) if ((mask & (1<<v))==0) dp[mask | (1<<v)][v] = Math.min(dp[mask | (1<<v)][v], dp[mask][u] + cost[u][v]);
-    }
-    int ans = INF; for (int i = 0; i < n; i++) ans = Math.min(ans, dp[VIS-1][i] + cost[i][0]);
+
+    for (int mask = 1; mask < VIS; mask++) 
+        for (int u = 0; u < n; u++) 
+            if ((mask & (1 << u)) != 0) {
+                for (int v = 0; v < n; v++) 
+                    if ((mask & (1 << v)) == 0) 
+                        dp[mask | (1 << v)][v] = Math.min(
+                            dp[mask | (1 << v)][v], 
+                            dp[mask][u] + cost[u][v]
+                        );
+            }
+
+    int ans = INF; 
+    for (int i = 0; i < n; i++) 
+        ans = Math.min(ans, dp[VIS - 1][i] + cost[i][0]);
+
     return ans;
 }
 ```
 
-Use cases
-- Route planning, logistics, small TSP instances.
+---
+
+### Use Cases
+- Logistics and route planning
+- Circuit design
+- Optimization problems with constraints
 
 ---
 
-## Practical-32: Graph Coloring
+## Practical-28: Graph Coloring
 
-Code  
+### Aim
+Assign colors to vertices such that no two adjacent vertices share the same color.
+
+---
+
+### Algorithm (Backtracking)
+
+**Algorithm: GRAPH-COLORING(graph, m)**
+
+1. Assign colors one by one to vertices
+2. Check if current color assignment is safe
+3. If safe, recurse for next vertex
+4. If all vertices are colored, solution found
+
+---
+
+### Time Complexity (TC)
+- Exponential in worst case
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 static boolean isSafe(int v, int c, int[][] graph, int[] color, int n) {
-    for (int i = 0; i < n; i++) if (graph[v][i] == 1 && color[i] == c) return false;
+    for (int i = 0; i < n; i++) 
+        if (graph[v][i] == 1 && color[i] == c) 
+            return false;
+    return true;
+}
+static void solve(int v, int[][] graph, int[] color, int n, int m) {
+    if (v == n) {
+        for (int i = 0; i < n; i++) System.out.print(color[i] + " ");
+        System.out.println();
+        return;
+    }
+
+    for (int c = 1; c <= m; c++) {
+        if (isSafe(v, c, graph, color, n)) {
+            color[v] = c;
+            solve(v + 1, graph, color, n, m);
+            color[v] = 0;
+        }
+    }
+}
+```
+
+---
+
+### Use Cases
+- Register allocation in compilers
+- Scheduling problems
+- Frequency/channel assignment
+
+---
+
+## Practical-29: Hamiltonian Cycle
+
+### Aim
+Find a Hamiltonian cycle in a graph using backtracking.
+
+---
+
+### Algorithm (Backtracking)
+
+**Algorithm: HAMILTONIAN(graph)**
+
+1. Start from a vertex
+2. Recursively add vertices to path
+3. Check if all vertices are visited exactly once
+4. Verify if last vertex connects to first
+
+---
+
+### Time Complexity (TC)
+- \( O(n!) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
+```java
+static void nextValue(int k, int[][] graph, int[] x, int n) {
+    while (true) {
+        x[k] = (x[k] + 1) % n;
+
+        if (x[k] == 0) return;
+
+        if (graph[x[k - 1]][x[k]] == 1) {
+            int j;
+            for (j = 0; j < k; j++) {
+                if (x[j] == x[k]) break;
+            }
+
+            if (j == k) {
+                if (k < n - 1 || (k == n - 1 && graph[x[k]][x[0]] == 1)) {
+                    return;
+                }
+            }
+        }
+    }
+}
+
+static void hamiltonian(int k, int[][] graph, int[] x, int n) {
+    while (true) {
+        nextValue(k, graph, x, n);
+
+        if (x[k] == 0) return;
+
+        if (k == n - 1) {
+            for (int i = 0; i < n; i++) System.out.print(x[i] + " ");
+            System.out.println(x[0]);
+        } else {
+            hamiltonian(k + 1, graph, x, n);
+        }
+    }
+}
+```
+
+---
+## Practical-34: N-Queens Problem
+
+### Aim
+Place N queens on an \( N \times N \) chessboard such that no two queens attack each other.
+
+---
+
+### Algorithm (Backtracking)
+
+**Algorithm: N-QUEENS(k, x, n)**
+
+1. If \( k = n \), a solution is found
+2. For each column \( i = 0 \) to \( n-1 \):
+    - Check if placing queen at \( (k, i) \) is safe
+    - If safe:
+        - Place queen
+        - Recurse for next row
+
+---
+
+### Time Complexity (TC)
+- \( O(n!) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
+```java
+public static void solve(int k, int[] x, int n) {
+    if (k == n) {
+        solutions++;
+        return;
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (isSafe(k, i, x)) {
+            x[k] = i;
+            solve(k + 1, x, n);
+        }
+    }
+}
+
+static boolean isSafe(int k, int i, int[] x) {
+    for (int j = 0; j < k; j++) {
+        if (x[j] == i || Math.abs(x[j] - i) == Math.abs(j - k)) {
+            return false;
+        }
+    }
     return true;
 }
 ```
 
-Use cases
-- Register allocation, scheduling, frequency assignment.
-
 ---
 
-## Practical-33: Hamiltonian Cycle
-
-Code  
-```java
-static void nextValue(int k, int[][] graph, int[] x, int n) { /* see lab code */ }
-static void hamiltonian(int k, int[][] graph, int[] x, int n) { /* see lab code */ }
-```
+### Use Cases
+- Constraint satisfaction problems
+- Puzzle solving
+- Backtracking optimization techniques
 
 ---
-
-## Practical-34: N-Queens
-
-Code  
-```java
-public static void solveNQueens(int k, int[] x, int n) {
-    if (k == n) { /* record solution */ return; }
-    for (int i = 0; i < n; i++) if (isSafe(k, i, x)) { x[k] = i; solveNQueens(k+1, x, n); }
-}
-```
+### Graphs
+![N-Queens Time Complexity Graph](Lab%2011/Images/NQ.png)
 
 ---
-
 ## Practical-35: Sum of Subsets
 
-Code  
+### Aim
+Find all subsets of a given set whose sum equals a target value.
+
+---
+
+### Algorithm (Backtracking with Bounding)
+
+**Algorithm: SUM-OF-SUBSETS(s, k, r, w, x, n, W)**
+
+1. If \( k < n \):
+2. Include current element \( w[k] \):
+    - If \( s + w[k] = W \), output solution
+    - Else recurse if promising
+3. Exclude current element:
+    - Recurse if remaining elements can still reach \( W \)
+
+---
+
+### Time Complexity (TC)
+- Exponential (worst case)
+
+---
+
+### Space Complexity (SC)
+- \( O(n) \)
+
+---
+
+### Code    
+
 ```java
 public static void sumOfSubsets(int s, int k, int r, int[] w, int[] x, int n, int W) {
     if (k < n) {
         x[k] = 1;
-        if (s + w[k] == W) { System.out.println("Found subset"); }
-        else if (k+1 < n && s + w[k] + w[k+1] <= W) sumOfSubsets(s + w[k], k+1, r - w[k], w, x, n, W);
-        if (k+1 < n && s + r - w[k] >= W && s + w[k+1] <= W) { x[k] = 0; sumOfSubsets(s, k+1, r - w[k], w, x, n, W); }
+
+        if (s + w[k] == W) {
+            System.out.println("Found subset");
+        }
+        else if (k + 1 < n && s + w[k] + w[k+1] <= W) {
+            sumOfSubsets(s + w[k], k + 1, r - w[k], w, x, n, W);
+        }
+
+        if (k + 1 < n && s + r - w[k] >= W && s + w[k+1] <= W) {
+            x[k] = 0;
+            sumOfSubsets(s, k + 1, r - w[k], w, x, n, W);
+        }
     }
 }
 ```
-   for this lab
 
 ---
 
-If you'd like, I can:
-- Expand any function into a complete, runnable Java class with a main() and sample inputs.
-- Generate separate short READMEs per lab folder (e.g., `Lab 1/README.md`) using the same template.
-- Produce a table of contents at the top linking to each practical.
+### Use Cases
+- Subset selection problems
+- Resource allocation
+- Combinatorial optimization
 
-Changes applied: full README replaced with the regenerated structured document described above.
+---
+### Graphs
+![Sum of Subsets Time Complexity Graph](Lab%2011/Images/SumOfSubsets.png)
 
+---
