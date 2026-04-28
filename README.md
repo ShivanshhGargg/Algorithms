@@ -38,9 +38,7 @@ public static double powerRec(double x, int n) {
 
 Use cases
 - Fast exponentiation in numerical code, modular exponentiation (with modifications), graphics, simulations.
-
-Graphs
-- none
+  
 
 ---
 
@@ -74,9 +72,7 @@ public static void TOH(int n, char src, char dest, char aux) {
 
 Use cases
 - Teaching recursion and algorithmic thinking; puzzle solvers.
-
-Graphs
-- none
+  
 
 ---
 
@@ -141,9 +137,7 @@ public static int tips(double v, int t) {
 
 Use cases
 - Simulations of decay processes, iterative stopping conditions.
-
-Graphs
-- none
+  
 
 ---
 
@@ -171,9 +165,7 @@ public static String HR(int i, int[] arr) {
 
 Use cases
 - Efficient polynomial evaluation, compiler code generation, numeric libraries.
-
-Graphs
-- none
+  
 
 ---
 
@@ -203,9 +195,7 @@ public static int findDup(int[] nums) {
 
 Use cases
 - Data validation in sequences, error detection.
-
-Graphs
-- none
+  
 
 ---
 
@@ -862,9 +852,7 @@ public static void sumOfSubsets(int s, int k, int r, int[] w, int[] x, int n, in
     }
 }
 ```
-
-Graphs
-- none for this lab
+   for this lab
 
 ---
 
