@@ -42,13 +42,37 @@ public class MatrixChainMultiplication {
         }
     }
 
-    public static void main(String[] args) {
-        int[] p = {30, 35, 15, 5, 10, 20, 25};
-
+    public static double time(int[] p) {
+        long t1 = System.nanoTime();
         matrixChainOrder(p);
+        long t2 = System.nanoTime();
 
-        System.out.println("Number of multiplications: " + m[1][p.length - 1]);
-        System.out.print("Optimal Parenthesization: ");
-        printOptimalParens(1, p.length - 1);
+        return (t2 - t1) / 1_000_000.0; // ms
+    }
+
+    public static int[] generateDimensions(int n) {
+        Random rd = new Random();
+        int[] p = new int[n + 1];
+
+        for (int i = 0; i <= n; i++) {
+            p[i] = rd.nextInt(50) + 1; // avoid 0
+        }
+
+        return p;
+    }
+
+    public static void main(String[] args) {
+        int[] sizes = {5, 10, 15, 20, 25, 30, 35, 40};
+
+        for (int n : sizes) {
+            double avg = 0;
+
+            for (int i = 0; i < 10; i++) {
+                int[] p = generateDimensions(n);
+                avg += time(p);
+            }
+
+            System.out.print((avg / 10) + ", ");
+        }
     }
 }

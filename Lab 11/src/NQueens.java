@@ -1,17 +1,12 @@
+import java.util.*;
+
 public class NQueens {
-    public static void main(String[] args) {
-        int n = 4;
-        int[] x = new int[n];
 
-        solve(0, x, n);
-    }
+    static int solutions;
 
-    static void solve(int k, int[] x, int n) {
+    public static void solve(int k, int[] x, int n) {
         if (k == n) {
-            for (int i = 0; i < n; i++) {
-                System.out.print(x[i] + " ");
-            }
-            System.out.println();
+            solutions++;
             return;
         }
 
@@ -30,5 +25,30 @@ public class NQueens {
             }
         }
         return true;
+    }
+
+    public static double time(int n) {
+        int[] x = new int[n];
+        solutions = 0;
+
+        long t1 = System.nanoTime();
+        solve(0, x, n);
+        long t2 = System.nanoTime();
+
+        return (t2 - t1) / 1_000_000.0;
+    }
+
+    public static void main(String[] args) {
+        int[] sizes = {4, 5, 6, 7, 8, 9, 10};
+
+        for (int n : sizes) {
+            double avg = 0;
+
+            for (int i = 0; i < 5; i++) {
+                avg += time(n);
+            }
+
+            System.out.print(avg / 5 + ",");
+        }
     }
 }

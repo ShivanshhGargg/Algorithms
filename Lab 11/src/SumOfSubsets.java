@@ -1,26 +1,15 @@
+import java.util.*;
+
 public class SumOfSubsets {
-    public static void main(String[] args) {
-        int[] w = {2, 3, 5, 7};
-        int n = w.length;
-        int W = 10;
 
-        int[] x = new int[n];
+    static int count;
 
-        int r = 0;
-        for (int i = 0; i < n; i++) r += w[i];
-
-        sumOfSubsets(0, 0, r, w, x, n, W);
-    }
-
-    static void sumOfSubsets(int s, int k, int r, int[] w, int[] x, int n, int W) {
+    public static void sumOfSubsets(int s, int k, int r, int[] w, int[] x, int n, int W) {
         if (k < n) {
             x[k] = 1;
 
             if (s + w[k] == W) {
-                for (int i = 0; i <= k; i++) {
-                    if (x[i] == 1) System.out.print(w[i] + " ");
-                }
-                System.out.println();
+                count++;
             }
             else if (k + 1 < n && s + w[k] + w[k + 1] <= W) {
                 sumOfSubsets(s + w[k], k + 1, r - w[k], w, x, n, W);
@@ -30,6 +19,50 @@ public class SumOfSubsets {
                 x[k] = 0;
                 sumOfSubsets(s, k + 1, r - w[k], w, x, n, W);
             }
+        }
+    }
+
+    public static double time(int[] w, int W) {
+        int n = w.length;
+        int[] x = new int[n];
+        count = 0;
+
+        int r = 0;
+        for (int val : w) r += val;
+
+        long t1 = System.nanoTime();
+        sumOfSubsets(0, 0, r, w, x, n, W);
+        long t2 = System.nanoTime();
+
+        return (t2 - t1) / 1_000_000.0;
+    }
+
+    public static int[] generateSet(int n) {
+        Random rd = new Random();
+        int[] w = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            w[i] = rd.nextInt(10) + 1; // small weights
+        }
+
+        Arrays.sort(w);
+        return w;
+    }
+
+    public static void main(String[] args) {
+        int[] sizes = {4, 6, 8, 10, 12, 14};
+
+        for (int n : sizes) {
+            double avg = 0;
+
+            for (int i = 0; i < 3; i++) time(generateSet(n), 20); // warm-up
+
+            for (int i = 0; i < 5; i++) {
+                int[] w = generateSet(n);
+                avg += time(w, 20);
+            }
+
+            System.out.print((avg / 5) + ", ");
         }
     }
 }
