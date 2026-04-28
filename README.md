@@ -1780,7 +1780,7 @@ static void hamiltonian(int k, int[][] graph, int[] x, int n) {
 ```
 
 ---
-## Practical-34: N-Queens Problem
+## Practical-30: N-Queens Problem
 
 ### Aim
 Place N queens on an \( N \times N \) chessboard such that no two queens attack each other.
@@ -1849,7 +1849,7 @@ static boolean isSafe(int k, int i, int[] x) {
 ![N-Queens Time Complexity Graph](Lab%2011/Images/NQ.png)
 
 ---
-## Practical-35: Sum of Subsets
+## Practical-31: Sum of Subsets
 
 ### Aim
 Find all subsets of a given set whose sum equals a target value.
