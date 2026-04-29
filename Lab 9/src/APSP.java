@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class FloydWarshall {
+public class APSP {
 
     static final int INF = 1_000_000;
 
-    public static void floydWarshall(int[][] cost, int[][] A, int n) {
+    public static void APSP(int[][] cost, int[][] A, int n) {
         for (int i = 0; i < n; i++) System.arraycopy(cost[i], 0, A[i], 0, n);
 
         for (int k = 0; k < n; k++) {
@@ -23,7 +23,7 @@ public class FloydWarshall {
         int[][] A = new int[n][n];
 
         long t1 = System.nanoTime();
-        floydWarshall(graph, A, n);
+        APSP(graph, A, n);
         long t2 = System.nanoTime();
 
         return (t2 - t1) / 1_000_000.0;

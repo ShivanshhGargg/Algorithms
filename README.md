@@ -472,8 +472,66 @@ public static int LS(int[] arr, int target, int i) {
 ![Linear Search Time Complexity Graph](Lab%201/Images/Linear.png)
 
 ---
+## Practical-10: Finding Duplicate Element in an Array
 
-## Practical-10: Binary Search Using Recursion
+### Aim
+Find a duplicate element in an array.
+
+---
+
+### Algorithm
+
+**Algorithm: FIND-DUPLICATE(arr)**
+
+1. Iterate through the array
+2. For each element, compare it with previous elements
+3. If a match is found, return the duplicate
+4. If no duplicate found, return -1
+
+---
+
+### Time Complexity (TC)
+- \( O(n^2) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(1) \)
+
+---
+
+### Code (Important Function)
+
+```java
+public static int dup(int[] arr) {
+    int dup = -1;
+    int n = arr.length / 2;
+
+    for (int i = 0; i < n; i++) {
+        int t = arr[n - i];
+
+        for (int j = 0; j < n - i; j++) {
+            if (t == arr[j]) {
+                dup = t;
+                break;
+            }
+        }
+    }
+
+    return dup;
+}
+```
+
+---
+
+### Use Cases
+- Detecting repeated entries in datasets
+- Data validation
+- Error detection in sequences
+
+---
+
+## Practical-11: Binary Search Using Recursion
 
 ### Aim
 Search for a target in a sorted array using recursive binary search and measure execution time.
@@ -527,7 +585,7 @@ public static int BS(int[] arr, int t, int s, int e) {
 ![Binary Search Time Complexity Graph](Lab%202/Images/BinarySearch.png)
 
 ---
-## Practical-11: Insertion Sort
+## Practical-12: Insertion Sort
 
 ### Aim
 Sort an array using insertion sort and measure performance.
@@ -588,7 +646,7 @@ public static void IS(int[] arr) {
 ![Insertion Sort Time Complexity Graph](Lab%202/Images/InsertionSort.png)
 
 ---
-## Practical-12: Merge Sort Using Recursion
+## Practical-13: Merge Sort Using Recursion
 
 ### Aim
 Sort an array using merge sort and analyze performance for different input sizes.
@@ -661,7 +719,7 @@ Graphs
 ![Merge Sort Time Complexity Graph](Lab%203/Images/MergeSort.png)
 
 ---
-## Practical-13: Quick Sort Using Recursion
+## Practical-14: Quick Sort Using Recursion
 
 ### Aim
 Sort using quick sort and observe performance characteristics.
@@ -729,7 +787,7 @@ public static void qs(int[] arr, int s, int e) {
 ![Quick Sort Time Complexity Graph](Lab%203/Images/QuickSort.png)
 
 ---
-## Practical-14: Iterative Quick Sort
+## Practical-15: Iterative Quick Sort
 
 ### Aim
 Implement quick sort using an explicit stack instead of recursion.
@@ -795,7 +853,7 @@ public static void qsi(int[] arr, int s, int e) {
 ![Quick Sort (Iterative) Time Complexity Graph](Lab%204/Images/QuickSort.png)
 
 ---
-## Practical-15: Convex Hull
+## Practical-16: Convex Hull
 
 ### Aim
 Compute the convex hull of a set of planar points using monotone chain (or Graham scan style).
@@ -869,7 +927,7 @@ public static List<Point> convexHull(List<Point> points) {
 ![Convex Hull Time Complexity Graph](Lab%205/Images/ConvexHull.png)
 
 ---
-## Practical-16: Fractional Knapsack
+## Practical-17: Fractional Knapsack
 
 ### Aim
 Maximize value in a knapsack allowing fractional items using a greedy approach.
@@ -932,7 +990,7 @@ public static double knapSack(int W, int[] wt, int[] val) {
 ![Fractional Knapsack Time Complexity Graph](Lab%205/Images/KnapSack.png)
 
 ---
-## Practical-17: K-th Smallest (Quickselect)
+## Practical-18: K-th Smallest (Quickselect)
 
 ### Aim
 Find the k-th smallest element in an array more efficiently than full sorting.
@@ -997,7 +1055,7 @@ public static int quickselect(int[] a, int k, int l, int r) {
 ![K-th Smallest Time Complexity Graph](Lab%205/Images/KthSmallest.png)
 
 ---
-## Practical-18: Max and Min Using Divide and Conquer
+## Practical-19: Max and Min Using Divide and Conquer
 
 ### Aim
 Find both maximum and minimum elements in an array using divide-and-conquer.
@@ -1052,7 +1110,7 @@ public static int[] max_min(int[] a, int l, int r) {
 ![Max-Min Time Complexity Graph](Lab%205/Images/MaxMin.png)
 
 ---
-## Practical-19: Dijkstra's Shortest Path
+## Practical-20: Dijkstra's Shortest Path
 
 ### Aim
 Compute shortest paths from a single source in a weighted graph with non-negative weights.
@@ -1122,7 +1180,7 @@ public static int[] dijkstra(int[][] graph, int src) {
 ![Dijkstra's Shortest Path Time Complexity Graph](Lab%206/Images/Dijsktra.png)
 
 ---
-## Practical-20: Prim's Algorithm for MST
+## Practical-21: Prim's Algorithm for MST
 
 ### Aim
 Construct a Minimum Spanning Tree using Prim's greedy approach.
@@ -1182,7 +1240,7 @@ public static void prims(int[][] graph) {
 
 ---
 
-## Practical-21: Kruskal's Algorithm for MST
+## Practical-22: Kruskal's Algorithm for MST
 
 ### Aim
 Construct a Minimum Spanning Tree by sorting edges and avoiding cycles using union-find.
@@ -1246,7 +1304,7 @@ public static void kruskal(List<Edge> edges, int n) {
 ![Kruskal's MST Time Complexity Graph](Lab%206/Images/Kruskal.png)
 
 ---
-## Practical-22: Stage Construction in Multistage Graph
+## Practical-23: Stage Construction in Multistage Graph
 
 ### Aim
 Construct stages of a multistage graph from a given adjacency matrix.
@@ -1318,7 +1376,7 @@ private static void findStage(int[][] g) {
 
 ---
 
-## Practical-23: Multistage Graph (Backward Approach)
+## Practical-24: Multistage Graph (Backward Approach)
 
 ### Aim
 Find shortest path in a multistage graph using backward approach.
@@ -1389,7 +1447,7 @@ private static void bGraph(int[][] graph) {
 
 ---
 
-## Practical-24: Multistage Graph (Forward Approach)
+## Practical-25: Multistage Graph (Forward Approach)
 
 ### Aim
 Find shortest path in a multistage graph using forward dynamic programming.
@@ -1459,7 +1517,7 @@ private static void fGraph(int[][] graph) {
 - Multistage shortest path
 
 ---
-## Practical-25: Matrix Chain Multiplication
+## Practical-26: Matrix Chain Multiplication
 
 ### Aim
 Find the optimal parenthesization of matrices to minimize scalar multiplications.
@@ -1524,7 +1582,90 @@ public static void matrixChainOrder(int[] p) {
 ![Matrix Chain Multiplication Time Complexity Graph](Lab%208/Images/MCM.png)
 
 ---
-## Practical-26: Floyd-Warshall
+## Practical-27: Longest Common Subsequence (LCS)
+
+### Aim
+Find the longest common subsequence between two strings using dynamic programming.
+
+---
+
+### Algorithm (Dynamic Programming)
+
+**Algorithm: LCS(X, Y)**
+
+1. Let \( m = length(X), n = length(Y) \)
+2. Create table \( c[m+1][n+1] \)
+3. Fill table:
+   - If characters match → diagonal + 1
+   - Else → max of top or left
+4. Use a direction table to reconstruct LCS
+5. Backtrack to print the subsequence
+
+---
+
+### Time Complexity (TC)
+- \( O(m \cdot n) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(m \cdot n) \)
+
+---
+
+### Code (Important Functions)
+
+```java
+static int[][] c;
+static char[][] p;
+
+static void lcs(String X, String Y) {
+    int m = X.length();
+    int n = Y.length();
+
+    c = new int[m + 1][n + 1];
+    p = new char[m + 1][n + 1];
+
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (X.charAt(i - 1) == Y.charAt(j - 1)) {
+                c[i][j] = 1 + c[i - 1][j - 1];
+                p[i][j] = 'D';
+            } else if (c[i - 1][j] >= c[i][j - 1]) {
+                c[i][j] = c[i - 1][j];
+                p[i][j] = 'U';
+            } else {
+                c[i][j] = c[i][j - 1];
+                p[i][j] = 'L';
+            }
+        }
+    }
+}
+
+static void printLCS(String X, int i, int j) {
+    if (i == 0 || j == 0) return;
+
+    if (p[i][j] == 'D') {
+        printLCS(X, i - 1, j - 1);
+        System.out.print(X.charAt(i - 1));
+    } else if (p[i][j] == 'U') {
+        printLCS(X, i - 1, j);
+    } else {
+        printLCS(X, i, j - 1);
+    }
+}
+```
+
+---
+
+### Use Cases
+- DNA sequence alignment
+- Text comparison (diff tools)
+- Version control systems
+- Plagiarism detection
+
+---
+## Practical-28: APSP
 
 ### Aim
 Compute shortest paths between all pairs of vertices.
@@ -1533,7 +1674,7 @@ Compute shortest paths between all pairs of vertices.
 
 ### Algorithm (Dynamic Programming)
 
-**Algorithm: FLOYD-WARSHALL(dist)**
+**Algorithm: APSP(dist)**
 
 1. For each vertex \( k \):
 2. For each pair \( (i, j) \):
@@ -1554,7 +1695,7 @@ Compute shortest paths between all pairs of vertices.
 ### Code    
 
 ```java
-public static void floydWarshall(int[][] dist) {
+public static void APSP(int[][] dist) {
     int n = dist.length;
 
     for (int k = 0; k < n; k++)
@@ -1575,11 +1716,84 @@ public static void floydWarshall(int[][] dist) {
 ---
 
 ### Graphs
-![Floyd-Warshall All-Pairs Shortest Path Graph](Lab%209/Images/FloydWarshall.png)
+![Floyd-Warshall All-Pairs Shortest Path Graph](Lab%209/Images/APSP.png)
+
+---
+## Practical-29: 0/1 Knapsack (Dynamic Programming)
+
+### Aim
+Maximize total value in a knapsack without exceeding capacity, where each item can be taken at most once.
 
 ---
 
-## Practical-27: Traveling Salesman Problem (Dynamic Programming)
+### Algorithm (Dynamic Programming)
+
+**Algorithm: KNAPSACK(weights, values, capacity)**
+
+1. Let \( n = number\ of\ items \)
+2. Create DP table \( dp[n+1][capacity+1] \)
+3. For each item \( i \) and weight \( w \):
+   - If item can be included:  
+     \[
+     dp[i][w] = \max(dp[i-1][w],\ dp[i-1][w - weight[i]] + value[i])
+     \]
+   - Else:
+     \[
+     dp[i][w] = dp[i-1][w]
+     \]
+4. Return \( dp[n][capacity] \)
+
+---
+
+### Time Complexity (TC)
+- \( O(n \cdot W) \)
+
+---
+
+### Space Complexity (SC)
+- \( O(n \cdot W) \)
+
+---
+
+### Code (Important Function)
+
+```java
+public static int knapsack(int[] weights, int[] values, int capacity) {
+    int n = weights.length;
+    int[][] dp = new int[n + 1][capacity + 1];
+
+    for (int i = 0; i <= n; i++) {
+        for (int w = 0; w <= capacity; w++) {
+            if (i == 0 || w == 0) {
+                dp[i][w] = 0;
+            } else if (weights[i - 1] <= w) {
+                dp[i][w] = Math.max(
+                    dp[i - 1][w],
+                    dp[i - 1][w - weights[i - 1]] + values[i - 1]
+                );
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][capacity];
+}
+```
+
+---
+
+### Use Cases
+- Resource allocation problems
+- Budget optimization
+- Cargo loading and logistics
+- Investment decision making
+
+### Graphs
+![0/1 KnapSack Graph](Lab%2010/Images/01KS.png)
+---
+
+## Practical-30: Traveling Salesman Problem (Dynamic Programming)
 
 ### Aim
 Solve TSP efficiently using Dynamic Programming (Bitmasking).
@@ -1648,7 +1862,7 @@ public static int tspDP(int n, int[][] cost) {
 
 ---
 
-## Practical-28: Graph Coloring
+## Practical-31: Graph Coloring
 
 ### Aim
 Assign colors to vertices such that no two adjacent vertices share the same color.
@@ -1711,7 +1925,7 @@ static void solve(int v, int[][] graph, int[] color, int n, int m) {
 
 ---
 
-## Practical-29: Hamiltonian Cycle
+## Practical-32: Hamiltonian Cycle
 
 ### Aim
 Find a Hamiltonian cycle in a graph using backtracking.
@@ -1780,7 +1994,7 @@ static void hamiltonian(int k, int[][] graph, int[] x, int n) {
 ```
 
 ---
-## Practical-30: N-Queens Problem
+## Practical-33: N-Queens Problem
 
 ### Aim
 Place N queens on an \( N \times N \) chessboard such that no two queens attack each other.
@@ -1849,7 +2063,7 @@ static boolean isSafe(int k, int i, int[] x) {
 ![N-Queens Time Complexity Graph](Lab%2011/Images/NQ.png)
 
 ---
-## Practical-31: Sum of Subsets
+## Practical-34: Sum of Subsets
 
 ### Aim
 Find all subsets of a given set whose sum equals a target value.
